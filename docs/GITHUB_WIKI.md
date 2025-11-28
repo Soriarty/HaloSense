@@ -10,6 +10,314 @@ GitHub Wiki provides a dedicated space for project documentation separate from t
 
 ---
 
+## Wiki as Git Submodule (Recommended Strategy)
+
+### Overview
+
+GitHub Wiki is actually a **separate Git repository** that lives alongside your main repository. The best way to manage it professionally is to treat it as a **Git submodule** in your main repo.
+
+**Why this is powerful:**
+- ✅ Wiki content becomes part of your main repo structure
+- ✅ Branch protection applies to Wiki changes (via PR process)
+- ✅ Wiki updates can be reviewed like code
+- ✅ Conventional Commits work for Wiki content
+- ✅ Version control between code and docs is synchronized
+- ✅ Clone main repo → Wiki comes along (optional)
+
+### How GitHub Wiki Works
+
+**Separate Repository:**
+```bash
+# Main repository
+https://github.com/Soriarty/HaloSense.git
+
+# Wiki repository (automatically created by GitHub)
+https://github.com/Soriarty/HaloSense.wiki.git
+```
+
+**Important characteristics:**
+- Wiki is a complete Git repository (`.git/` directory)
+- Contains Markdown files (`Home.md`, `Getting-Started.md`, etc.)
+- No branch protection by default
+- Direct web editing or Git clone workflow
+
+### Setup Wiki as Submodule
+
+**Step 1: Enable Wiki on GitHub**
+1. Go to repository Settings
+2. Features → Check "Wikis"
+3. Create first page (Home) via web interface
+4. This initializes the `.wiki.git` repository
+
+**Step 2: Add Wiki as Submodule**
+
+```bash
+# Navigate to your main repository
+cd ~/Git/HaloSense
+
+# Add Wiki as submodule in docs/wiki/
+git submodule add https://github.com/Soriarty/HaloSense.wiki.git docs/wiki
+
+# This creates:
+# - docs/wiki/ directory containing Wiki files
+# - .gitmodules file tracking the submodule
+
+# Commit the submodule addition
+git add .gitmodules docs/wiki
+git commit -m "docs(wiki): add Wiki repository as submodule"
+git push origin develop
+```
+
+**Result:**
+```
+HaloSense/
+├── docs/
+│   ├── wiki/                    # ← Wiki submodule
+│   │   ├── Home.md
+│   │   ├── Getting-Started.md
+│   │   └── _Sidebar.md
+│   ├── GITFLOW.md               # Technical docs
+│   ├── CONVENTIONAL_COMMITS.md
+│   └── ...
+├── hardware/
+├── firmware/
+└── ...
+```
+
+### Workflow with Submodule
+
+**For Contributors:**
+
+```bash
+# Clone main repo with submodules
+git clone --recursive https://github.com/Soriarty/HaloSense.git
+
+# Or if already cloned, initialize submodules
+git submodule init
+git submodule update
+
+# Navigate to Wiki submodule
+cd docs/wiki
+
+# Create feature branch (in Wiki repo)
+git checkout -b update-assembly-guide
+
+# Edit Wiki pages
+vim Assembly-Guide.md
+
+# Commit in Wiki repo
+git add Assembly-Guide.md
+git commit -m "docs(wiki): update assembly guide with photos"
+
+# Push Wiki changes
+git push origin update-assembly-guide
+
+# Go back to main repo
+cd ../..
+
+# The submodule reference has changed
+git add docs/wiki
+git commit -m "docs(wiki): update Wiki reference"
+
+# Create PR to main repo (includes Wiki changes)
+git push origin feature/update-docs
+```
+
+**For Reviewers:**
+
+When someone creates a PR that includes Wiki changes:
+1. PR shows submodule commit hash changed
+2. Reviewer can click submodule link to see Wiki diff
+3. Review Wiki content before approving PR
+4. Branch protection enforces review process
+
+**For Maintainers:**
+
+```bash
+# Pull latest changes including submodule updates
+git pull origin develop
+git submodule update --remote
+
+# Or update all submodules at once
+git submodule update --init --recursive
+```
+
+### Advantages of Submodule Strategy
+
+| Feature | Without Submodule | With Submodule |
+|---------|-------------------|----------------|
+| **Branch Protection** | ❌ No (direct Wiki push) | ✅ Yes (via main repo PR) |
+| **Code Review** | ❌ No review process | ✅ PR review required |
+| **Conventional Commits** | ⚠️ Optional | ✅ Enforced via commitlint |
+| **Version Sync** | ❌ Manual | ✅ Submodule commit tracks version |
+| **Offline Access** | ❌ Must clone separately | ✅ Included in recursive clone |
+| **CI/CD Integration** | ⚠️ Difficult | ✅ Easy (part of main repo) |
+| **Atomic Updates** | ❌ Wiki and code separate | ✅ Single PR updates both |
+
+### Branch Protection Integration
+
+**How it works:**
+
+1. **Direct Wiki Push:** Blocked by requiring Wiki changes via main repo PR
+2. **Feature Branch Workflow:**
+   ```
+   feature/new-sensor
+   ├── hardware/sensor.kicad_sch    (new hardware)
+   ├── firmware/sensor.yaml          (new firmware)
+   └── docs/wiki/Sensor-Guide.md    (updated Wiki)
+   ```
+3. **PR Review:** All changes reviewed together
+4. **Merge:** Wiki submodule updated atomically with code
+
+**Configuration:**
+
+```bash
+# In main repo, enforce that Wiki changes go through PR
+# (no special config needed - main repo branch protection applies)
+
+# Optional: Remind contributors in CONTRIBUTING.md
+cat >> CONTRIBUTING.md <<'EOF'
+
+### Updating Wiki
+
+Wiki content is managed as a Git submodule at `docs/wiki/`.
+
+To update Wiki pages:
+1. Navigate to `docs/wiki/`
+2. Create branch and edit pages
+3. Commit Wiki changes
+4. Return to main repo root
+5. Commit submodule reference update
+6. Create PR to main repo (includes Wiki changes)
+
+EOF
+```
+
+### Alternative: Two-Way Sync Strategy
+
+If you want to allow **both** direct Wiki editing (via web) **and** submodule workflow:
+
+**Setup bidirectional sync:**
+
+```bash
+# Script: scripts/sync-wiki.sh
+#!/bin/bash
+
+# Pull latest Wiki changes into submodule
+cd docs/wiki
+git pull origin main
+
+# Update submodule reference in main repo
+cd ../..
+git add docs/wiki
+git commit -m "docs(wiki): sync latest Wiki changes" || true
+```
+
+**Run periodically:**
+```bash
+# Manual sync
+./scripts/sync-wiki.sh
+
+# Or via cron/GitHub Actions
+# (runs daily to pull web-edited Wiki changes)
+```
+
+**Trade-offs:**
+- ✅ Allows quick web edits (no PR)
+- ❌ Bypasses branch protection
+- ⚠️ Two sources of truth (can conflict)
+
+**Recommendation:** Choose **one** workflow:
+- **Strict:** All Wiki changes via submodule PR (recommended for HaloSense)
+- **Flexible:** Allow web edits + periodic sync (for community wikis)
+
+### Submodule Commands Reference
+
+```bash
+# Add submodule
+git submodule add <url> <path>
+
+# Clone repo with submodules
+git clone --recursive <repo-url>
+
+# Initialize submodules (if not cloned with --recursive)
+git submodule init
+git submodule update
+
+# Update submodule to latest
+cd docs/wiki
+git pull origin main
+cd ../..
+git add docs/wiki
+git commit -m "docs(wiki): update to latest"
+
+# Update all submodules
+git submodule update --remote
+
+# Remove submodule
+git submodule deinit docs/wiki
+git rm docs/wiki
+rm -rf .git/modules/docs/wiki
+```
+
+### .gitmodules File
+
+After adding submodule, `.gitmodules` contains:
+
+```ini
+[submodule "docs/wiki"]
+	path = docs/wiki
+	url = https://github.com/Soriarty/HaloSense.wiki.git
+	branch = main
+```
+
+**Optional: Track specific branch:**
+```bash
+# Make submodule track 'develop' branch instead of 'main'
+git config -f .gitmodules submodule.docs/wiki.branch develop
+```
+
+### Troubleshooting Submodules
+
+**Issue: Submodule not initialized**
+```bash
+# Solution
+git submodule init
+git submodule update
+```
+
+**Issue: Submodule detached HEAD**
+```bash
+# Solution: check out main branch in submodule
+cd docs/wiki
+git checkout main
+```
+
+**Issue: Submodule conflicts**
+```bash
+# Solution: resolve in submodule first, then main repo
+cd docs/wiki
+git pull
+# Resolve conflicts
+git add .
+git commit
+cd ../..
+git add docs/wiki
+git commit
+```
+
+**Issue: Forgot to push submodule changes**
+```bash
+# Main repo references commit that doesn't exist in Wiki
+# Solution: push Wiki changes first
+cd docs/wiki
+git push origin main
+cd ../..
+git push origin develop
+```
+
+---
+
 ## Wiki vs Docs Directory
 
 ### Current Setup

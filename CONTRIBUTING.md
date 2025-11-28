@@ -120,6 +120,7 @@ By participating, you are expected to uphold these principles.
 - Installation tutorials
 - Troubleshooting guides
 - ESPHome configuration examples
+- Wiki content (user-facing guides)
 - Translations (future)
 
 **Documentation standards:**
@@ -129,6 +130,11 @@ By participating, you are expected to uphold these principles.
 - Use Markdown formatting
 - Check spelling and grammar
 - Test all code examples
+
+**Documentation types:**
+- **Technical docs** → `docs/` directory (developer-focused)
+- **User guides** → GitHub Wiki (user-focused)
+- See [Wiki Strategy](docs/GITHUB_WIKI.md) for details
 
 **Sensor documentation template:**
 When adding documentation for new sensors, follow this structure:
@@ -141,6 +147,67 @@ docs/sensors/sensor-name/
 ```
 
 See [docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md](docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md) as a reference.
+
+### Updating Wiki
+
+**Wiki is managed as a Git submodule** at `docs/wiki/` (see [Wiki Strategy](docs/GITHUB_WIKI.md)).
+
+**To update Wiki pages:**
+
+1. **Ensure Wiki submodule is initialized:**
+   ```bash
+   git submodule init
+   git submodule update
+   ```
+
+2. **Navigate to Wiki submodule:**
+   ```bash
+   cd docs/wiki
+   ```
+
+3. **Create feature branch in Wiki repo:**
+   ```bash
+   git checkout -b update-assembly-guide
+   ```
+
+4. **Edit Wiki pages:**
+   ```bash
+   vim Assembly-Guide.md
+   # Make your changes
+   ```
+
+5. **Commit Wiki changes:**
+   ```bash
+   git add Assembly-Guide.md
+   git commit -m "docs(wiki): update assembly guide with photos"
+   ```
+
+6. **Push Wiki branch:**
+   ```bash
+   git push origin update-assembly-guide
+   ```
+
+7. **Return to main repo and update submodule reference:**
+   ```bash
+   cd ../..
+   git add docs/wiki
+   git commit -m "docs(wiki): update Wiki submodule reference"
+   ```
+
+8. **Create PR to main repo:**
+   ```bash
+   git push origin feature/update-docs
+   # Create PR: feature/update-docs → develop
+   ```
+
+**Why this workflow?**
+- ✅ Wiki changes go through PR review process
+- ✅ Branch protection applies to Wiki content
+- ✅ Conventional Commits enforced
+- ✅ Wiki versioned alongside code
+
+**Alternative: Quick Wiki edits**
+For minor typo fixes, you can edit directly via GitHub Wiki web interface, but major changes should follow the submodule workflow.
 
 ### Bug Reports
 
