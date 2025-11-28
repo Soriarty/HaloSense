@@ -204,17 +204,21 @@ Contributions are welcome! Whether it's hardware improvements, firmware enhancem
 ### Quick Start
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-improvement`)
+2. Create a feature branch from `develop`:
+   ```bash
+   git checkout develop
+   git pull origin develop
+   git checkout -b feature/amazing-improvement
+   ```
 3. Make your changes following the [guidelines](CONTRIBUTING.md)
 4. Test thoroughly
-5. Commit using [Conventional Commits](docs/CONVENTIONAL_COMMITS.md) format
+5. Commit using [Conventional Commits](docs/CONVENTIONAL_COMMITS.md) format:
    ```bash
    git commit -m "feat(sensor): add new sensor support"
    ```
-6. Push to your fork
-7. Open a Pull Request
+6. Push to your fork and create PR to `develop`
 
-**Commit Format:** We use [Conventional Commits](docs/CONVENTIONAL_COMMITS.md) and [Semantic Versioning](docs/VERSIONING.md) for automated changelog generation and version management.
+**Workflow:** We use [Git Flow](docs/GITFLOW.md) branching strategy with [Conventional Commits](docs/CONVENTIONAL_COMMITS.md) and [Semantic Versioning](docs/VERSIONING.md).
 
 **First time contributing?** Check out our [detailed guide](CONTRIBUTING.md) or ask in [Discussions](https://github.com/Soriarty/HaloSense/discussions)!
 
@@ -227,6 +231,7 @@ Contributions are welcome! Whether it's hardware improvements, firmware enhancem
 - **Contributing:** [Contribution Guidelines](CONTRIBUTING.md) - How to contribute
 - **Documentation:**
   - [Sensor Documentation Index](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/SENSORS_INDEX.md)
+  - [Git Flow Workflow](https://github.com/Soriarty/HaloSense/blob/main/docs/GITFLOW.md)
   - [Conventional Commits Guide](https://github.com/Soriarty/HaloSense/blob/main/docs/CONVENTIONAL_COMMITS.md)
   - [Versioning Guide](https://github.com/Soriarty/HaloSense/blob/main/docs/VERSIONING.md)
 - **Author:** [@Soriarty](https://github.com/Soriarty)

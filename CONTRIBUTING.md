@@ -13,6 +13,7 @@ First off, thank you for considering contributing to HaloSense! It's people like
   - [Bug Reports](#bug-reports)
   - [Feature Requests](#feature-requests)
 - [Development Setup](#development-setup)
+- [Git Flow Workflow](#git-flow-workflow)
 - [Pull Request Process](#pull-request-process)
 - [Style Guidelines](#style-guidelines)
   - [Git Commit Messages](#git-commit-messages)
@@ -256,18 +257,92 @@ esphome upload firmware/halosense.yaml
 
 ---
 
+## Git Flow Workflow
+
+**HaloSense uses [Git Flow](docs/GITFLOW.md) branching strategy.**
+
+### Branch Structure
+
+**Main Branches:**
+- `main` - Production-ready code (protected, tagged releases)
+- `develop` - Integration branch for ongoing development
+
+**Supporting Branches:**
+- `feature/*` - New features (branch from `develop`)
+- `release/*` - Release preparation (branch from `develop`)
+- `hotfix/*` - Emergency production fixes (branch from `main`)
+- `bugfix/*` - Bug fixes for develop (branch from `develop`)
+
+### Quick Start
+
+**New Feature:**
+```bash
+git checkout develop
+git pull origin develop
+git checkout -b feature/my-feature
+
+# Work and commit
+git commit -m "feat(sensor): add new sensor"
+
+# Push and create PR to develop
+git push origin feature/my-feature
+```
+
+**Bug Fix:**
+```bash
+git checkout develop
+git pull origin develop
+git checkout -b bugfix/fix-description
+
+# Fix and commit
+git commit -m "fix(esphome): correct configuration"
+
+# Push and create PR to develop
+git push origin bugfix/fix-description
+```
+
+**Release:**
+```bash
+git checkout develop
+git checkout -b release/1.0.0
+npm run release
+
+# Merge to main and develop
+# Tag on main: v1.0.0
+```
+
+**Hotfix:**
+```bash
+git checkout main
+git checkout -b hotfix/1.0.1
+
+# Fix and commit
+git commit -m "fix: critical bug"
+
+# Merge to main and develop
+# Tag on main: v1.0.1
+```
+
+**Detailed guide:** See [docs/GITFLOW.md](docs/GITFLOW.md)
+
+---
+
 ## Pull Request Process
 
 ### Before Creating a PR
 
 1. **Fork the repository** to your GitHub account
-2. **Create a feature branch** from `main`:
+2. **Create a feature branch** from `develop`:
    ```bash
+   git checkout develop
+   git pull origin develop
    git checkout -b feature/your-feature-name
    ```
    Or for bug fixes:
    ```bash
-   git checkout -b fix/bug-description
+   git checkout develop
+   git pull origin develop
+   git checkout -b bugfix/bug-description
    ```
 
 3. **Make your changes** following the style guidelines
