@@ -18,8 +18,13 @@ Fork it, build it, customize it. Professional results, maker-friendly.
 
 ### Multi-Sensor Detection
 - **mmWave Radar** - Accurate presence detection (even stationary people)
-- **PIR Motion Sensor** - Traditional motion detection backup
+- **PIR Motion Sensor** - Fast motion detection for instant room entry trigger
 - **Ambient Light Sensor** - Lux measurement for smart lighting automation
+
+**Why Both mmWave + PIR?**
+- **PIR:** Instant detection (<0.1s) when entering room - immediate automation trigger
+- **mmWave:** Continuous presence monitoring - detects even stationary people
+- **Combined:** Best of both worlds - instant response + accurate presence tracking
 
 ### Flexible Connectivity
 - **PoE Mode** - Single cable for power + data (IEEE 802.3af)
