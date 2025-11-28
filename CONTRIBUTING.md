@@ -39,9 +39,19 @@ By participating, you are expected to uphold these principles.
 
 ### Hardware Design
 
+**Hardware Architecture Overview:**
+- **Single mainboard design** (circular PCB form factor)
+- **Top-side:** ESP32 module + sensor module connectors
+  - Modular sensor attachment (mmWave, PIR, light sensors)
+  - Connector-based, not direct soldering
+- **Bottom-side:** PoE circuit + vertical Ethernet (RJ45) + vertical USB-C
+  - Clean cable management with vertical connectors
+  - Power regulation and distribution
+
 **Areas for contribution:**
 - PCB layout improvements
 - Component selection and optimization
+- Sensor module connector design
 - Power management enhancements
 - Signal integrity improvements
 - Cost reduction suggestions

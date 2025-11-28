@@ -32,7 +32,9 @@ Fork it, build it, customize it. Professional results, maker-friendly.
 - **WiFi + USB-C** - Wireless connectivity for flexible placement
 
 ### Complete Design Package
-- **Hardware** - KiCad PCB design files (circular form factor)
+- **Hardware** - Single mainboard design (circular form factor)
+  - Top-side: ESP32 + sensor module connectors
+  - Bottom-side: PoE circuit + vertical Ethernet + vertical USB-C
 - **Firmware** - ESPHome configuration for Home Assistant
 - **Enclosure** - 3D-printable housing (STL files)
 - **Mounting** - Various mounting options (wall, ceiling, desk)
@@ -60,10 +62,10 @@ This project is in active development. Check back for updates!
 
 ### Roadmap
 - [ ] Hardware design (KiCad)
-  - [ ] ESP32-POE base modification
+  - [ ] Single mainboard schematic (ESP32-POE base)
   - [ ] Circular PCB layout
-  - [ ] Sensor integration
-  - [ ] USB-C + Ethernet rear panel
+  - [ ] Top-side: ESP32 + sensor module connectors
+  - [ ] Bottom-side: PoE + vertical Ethernet + vertical USB-C
 - [ ] Firmware (ESPHome)
   - [x] mmWave sensor selection (DFRobot C4001)
   - [ ] mmWave sensor ESPHome configuration
