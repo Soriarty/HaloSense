@@ -1,0 +1,55 @@
+# Claude Code context files
+.claude/
+
+# PDF datasheets (optional - uncomment to exclude from git)
+# Uncomment the line below if you want to keep datasheets local only
+# docs/sensors/*/datasheets/*.pdf
+
+# Node.js dependencies (for versioning tools)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Secrets (ESPHome)
+firmware/secrets.yaml
+
+# Build artifacts
+firmware/.esphome/
+*.bin
+*.elf
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# KiCad backup and temporary files
+*.bak
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*-save.kicad_pcb
+*-save.kicad_sch
+*.bck
+*.dcm.bak
+*.lib.bak
+fp-info-cache
+*-cache.lib
+*-rescue.lib
+*-rescue.dcm
+
+# 3D printing temporary files
+*.gcode
+*.3mf.bak
+*.stl.bak
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS generated files
+Thumbs.db
+.Spotlight-V100
+.Trashes

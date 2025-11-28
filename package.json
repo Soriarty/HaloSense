@@ -1,0 +1,103 @@
+{
+  "name": "halosense",
+  "version": "0.1.0-alpha.1",
+  "description": "Professional-grade presence detection for smart homes",
+  "private": true,
+  "scripts": {
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major",
+    "release:patch": "standard-version --release-as patch",
+    "release:alpha": "standard-version --prerelease alpha",
+    "release:beta": "standard-version --prerelease beta",
+    "release:rc": "standard-version --prerelease rc",
+    "release:first": "standard-version --first-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Soriarty/HaloSense.git"
+  },
+  "keywords": [
+    "smart-home",
+    "presence-detection",
+    "mmwave",
+    "esp32",
+    "esphome",
+    "home-assistant",
+    "poe",
+    "iot",
+    "sensor"
+  ],
+  "author": {
+    "name": "Soriarty",
+    "url": "https://github.com/Soriarty"
+  },
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/Soriarty/HaloSense/issues"
+  },
+  "homepage": "https://github.com/Soriarty/HaloSense#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "standard-version": "^9.5.0"
+  },
+  "standard-version": {
+    "skip": {
+      "changelog": false
+    },
+    "types": [
+      {
+        "type": "feat",
+        "section": "Features"
+      },
+      {
+        "type": "fix",
+        "section": "Bug Fixes"
+      },
+      {
+        "type": "perf",
+        "section": "Performance Improvements"
+      },
+      {
+        "type": "revert",
+        "section": "Reverts"
+      },
+      {
+        "type": "docs",
+        "section": "Documentation",
+        "hidden": false
+      },
+      {
+        "type": "style",
+        "section": "Styles",
+        "hidden": true
+      },
+      {
+        "type": "refactor",
+        "section": "Code Refactoring",
+        "hidden": true
+      },
+      {
+        "type": "test",
+        "section": "Tests",
+        "hidden": true
+      },
+      {
+        "type": "build",
+        "section": "Build System",
+        "hidden": true
+      },
+      {
+        "type": "ci",
+        "section": "Continuous Integration",
+        "hidden": true
+      },
+      {
+        "type": "chore",
+        "section": "Chores",
+        "hidden": true
+      }
+    ]
+  }
+}

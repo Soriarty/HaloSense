@@ -1,0 +1,139 @@
+# HaloSense ESPHome Configuration
+# 🚧 Work in Progress - Configuration under development
+
+substitutions:
+  device_name: halosense
+  friendly_name: "HaloSense"
+  device_description: "Professional-grade presence sensor"
+
+esphome:
+  name: ${device_name}
+  comment: ${device_description}
+  platform: ESP32
+  board: esp32-poe  # OLIMEX ESP32-POE compatible
+
+# Enable logging
+logger:
+  level: INFO
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+# Enable OTA updates
+ota:
+  password: !secret ota_password
+
+# WiFi configuration (fallback)
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot
+  ap:
+    ssid: "${friendly_name} Fallback"
+    password: !secret ap_password
+
+# Ethernet configuration (preferred)
+ethernet:
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk_mode: GPIO17_OUT
+  phy_addr: 0
+  power_pin: GPIO12
+
+# Web server for diagnostics
+web_server:
+  port: 80
+
+# Status LED
+status_led:
+  pin:
+    number: GPIO2
+    inverted: false
+
+# UART for mmWave sensor (DFRobot C4001)
+# TODO: Configure after hardware design is finalized
+# uart:
+#   id: uart_radar
+#   tx_pin: GPIO_TX  # TBD
+#   rx_pin: GPIO_RX  # TBD
+#   baud_rate: 115200
+
+# I2C for PIR and light sensors
+# TODO: Configure after sensor selection
+# i2c:
+#   sda: GPIO_SDA  # TBD
+#   scl: GPIO_SCL  # TBD
+#   scan: true
+
+# Sensors
+sensor:
+  # WiFi Signal Strength
+  - platform: wifi_signal
+    name: "${friendly_name} WiFi Signal"
+    update_interval: 60s
+
+  # Uptime
+  - platform: uptime
+    name: "${friendly_name} Uptime"
+    update_interval: 60s
+
+  # TODO: DFRobot C4001 mmWave Radar
+  # - platform: dfrobot_c4001
+  #   uart_id: uart_radar
+  #   presence:
+  #     name: "${friendly_name} Presence"
+  #   distance:
+  #     name: "${friendly_name} Distance"
+  #   velocity:
+  #     name: "${friendly_name} Velocity"
+
+  # TODO: PIR Motion Sensor
+  # TBD after component selection
+
+  # TODO: Ambient Light Sensor
+  # TBD after component selection
+
+# Binary Sensors
+binary_sensor:
+  # Status
+  - platform: status
+    name: "${friendly_name} Status"
+
+  # TODO: OUT pin from C4001 (optional simple trigger)
+  # - platform: gpio
+  #   pin: GPIO_OUT  # TBD
+  #   name: "${friendly_name} Motion"
+  #   device_class: motion
+
+# Switches
+switch:
+  # Restart switch
+  - platform: restart
+    name: "${friendly_name} Restart"
+
+# Text Sensors
+text_sensor:
+  # ESPHome version
+  - platform: version
+    name: "${friendly_name} ESPHome Version"
+
+  # WiFi info
+  - platform: wifi_info
+    ip_address:
+      name: "${friendly_name} IP Address"
+    ssid:
+      name: "${friendly_name} SSID"
+    bssid:
+      name: "${friendly_name} BSSID"
+
+# TODO: Power mode detection (PoE vs USB-C)
+# This will help optimize power consumption based on available power
+
+# TODO: Advanced configuration
+# - Presence detection zones
+# - Automation triggers
+# - MQTT integration (optional)
