@@ -97,10 +97,16 @@ By participating, you are expected to uphold these principles.
 - Assembly simplification
 - Support for different printer types
 
+**CAD Software:**
+- **Primary:** FreeCAD (official design tool)
+- **Version:** FreeCAD 0.21+ recommended
+- Source files in `.FCStd` format required for contributions
+
 **Requirements:**
 - All enclosure changes must include:
-  - Updated STL files (for printing)
-  - Updated STEP files (for editing)
+  - Updated FreeCAD source files (.FCStd)
+  - Exported STL files (for printing)
+  - Exported STEP files (for CAD interchange)
   - Print settings recommendations
   - Assembly instructions
   - Photos of printed parts
@@ -111,6 +117,14 @@ By participating, you are expected to uphold these principles.
 - Must provide adequate ventilation for ESP32
 - Must accommodate sensor beam angles
 - Should be mechanically robust
+
+**FreeCAD workflow:**
+1. Open/create design in `enclosure/freecad/*.FCStd`
+2. Make modifications using Part Design workbench
+3. Export STL to `enclosure/stl/`
+4. Export STEP to `enclosure/step/`
+5. Test print and document settings
+6. Create PR with all files + photos
 
 ### Documentation
 

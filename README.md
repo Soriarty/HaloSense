@@ -154,7 +154,11 @@ HaloSense/
 ### Prerequisites
 
 - **Hardware:** [See Bill of Materials on Wiki](https://github.com/Soriarty/HaloSense/wiki/Bill-of-Materials)
-- **Software:** [ESPHome](https://esphome.io/), [KiCad 8.0+](https://www.kicad.org/), [Home Assistant](https://www.home-assistant.io/) (optional)
+- **Software:**
+  - [KiCad 8.0+](https://www.kicad.org/) - PCB design
+  - [FreeCAD](https://www.freecad.org/) - 3D enclosure design
+  - [ESPHome](https://esphome.io/) - Firmware
+  - [Home Assistant](https://www.home-assistant.io/) - Integration (optional)
 
 ---
 

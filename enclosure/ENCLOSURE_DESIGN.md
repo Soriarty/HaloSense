@@ -18,10 +18,16 @@ The HaloSense enclosure is designed to be:
 
 ```
 enclosure/
-├── stl/            # STL files for 3D printing
-├── step/           # STEP files for editing in CAD software
-└── README.md       # This file
+├── freecad/        # FreeCAD source files (.FCStd)
+├── stl/            # Exported STL files for 3D printing
+├── step/           # Exported STEP files for CAD interchange
+└── ENCLOSURE_DESIGN.md  # This file
 ```
+
+**File formats:**
+- **FreeCAD (.FCStd)** - Primary source files with full parametric design
+- **STL (.stl)** - Exported for 3D printing (slicing)
+- **STEP (.step)** - Exported for CAD interchange (other CAD software)
 
 ## Design Goals
 
@@ -123,16 +129,62 @@ General steps:
 
 ## CAD Software
 
-### Recommended Tools
-- **FreeCAD** (free, open-source)
+### Primary Design Tool
+
+**FreeCAD** is the official CAD software for HaloSense enclosure design.
+
+**Why FreeCAD?**
+- ✅ **Free and Open Source** - Fully free, no license restrictions
+- ✅ **Cross-platform** - Windows, macOS, Linux
+- ✅ **Parametric Design** - Easy to modify and customize
+- ✅ **Python Scripting** - Automation possibilities
+- ✅ **STEP Export** - Compatibility with other CAD tools
+- ✅ **Active Development** - Regular updates and improvements
+
+**Download:** [https://www.freecad.org/](https://www.freecad.org/)
+
+**Version:** FreeCAD 0.21+ recommended
+
+### Working with FreeCAD
+
+**Opening project:**
+```bash
+freecad enclosure/freecad/halosense.FCStd
+```
+
+**Exporting for printing:**
+1. File → Export → Select "STL Mesh (*.stl)"
+2. Choose body/part to export
+3. Save to `enclosure/stl/`
+
+**Exporting for CAD interchange:**
+1. File → Export → Select "STEP (*.step)"
+2. Select all relevant bodies
+3. Save to `enclosure/step/`
+
+**Recommended Workbenches:**
+- **Part Design** - Main modeling workbench
+- **Sketcher** - 2D constraint-based sketching
+- **Draft** - 2D geometry and annotation
+- **Assembly** - Multi-part assembly (if needed)
+
+### Alternative CAD Tools
+
+If you prefer other tools, you can use the STEP files:
 - **Fusion 360** (free for personal use)
-- **Blender** (free, powerful for organic shapes)
-- **OpenSCAD** (free, parametric design)
+- **SolidWorks** (commercial)
+- **Onshape** (free tier available)
+- **Blender** (for organic shapes/visualization)
+
+**Note:** Contributions should include FreeCAD source files (.FCStd) for maintainability.
 
 ### File Formats
-- **STEP (.step)** - Universal CAD format for editing
-- **STL (.stl)** - 3D printing standard format
-- **3MF (.3mf)** - Modern 3D printing format (optional)
+
+| Format | Purpose | Version Control |
+|--------|---------|-----------------|
+| **.FCStd** | Primary source, parametric editing | ✅ Trackable (binary) |
+| **.step** | CAD interchange, editing in other tools | ✅ Text-based |
+| **.stl** | 3D printing, slicing | ⚠️ Binary |
 
 ## Contributing
 
