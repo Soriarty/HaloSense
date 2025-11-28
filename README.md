@@ -226,14 +226,16 @@ Contributions are welcome! Whether it's hardware improvements, firmware enhancem
 
 ## Community & Support
 
+- **📖 Wiki:** [User Documentation](https://github.com/Soriarty/HaloSense/wiki) - Getting started, guides, tutorials
 - **Issues:** [GitHub Issues](https://github.com/Soriarty/HaloSense/issues) - Bug reports and feature requests
 - **Discussions:** [GitHub Discussions](https://github.com/Soriarty/HaloSense/discussions) - General questions and community
 - **Contributing:** [Contribution Guidelines](CONTRIBUTING.md) - How to contribute
-- **Documentation:**
+- **Technical Documentation:**
   - [Sensor Documentation Index](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/SENSORS_INDEX.md)
   - [Git Flow Workflow](https://github.com/Soriarty/HaloSense/blob/main/docs/GITFLOW.md)
   - [Conventional Commits Guide](https://github.com/Soriarty/HaloSense/blob/main/docs/CONVENTIONAL_COMMITS.md)
   - [Versioning Guide](https://github.com/Soriarty/HaloSense/blob/main/docs/VERSIONING.md)
+  - [GitHub Wiki Strategy](https://github.com/Soriarty/HaloSense/blob/main/docs/GITHUB_WIKI.md)
 - **Author:** [@Soriarty](https://github.com/Soriarty)
 - **Home Assistant Community:** [Coming soon]
 
