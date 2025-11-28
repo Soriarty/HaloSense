@@ -170,7 +170,9 @@ docs/sensors/sensor-name/
     └── *.pdf
 ```
 
-See [docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md](docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md) as a reference.
+**Reference examples:**
+- mmWave sensor: [docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md](docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md)
+- PIR sensor: [docs/sensors/panasonic-ekmc1604111/EKMC1604111_TECHNICAL_GUIDE.md](docs/sensors/panasonic-ekmc1604111/EKMC1604111_TECHNICAL_GUIDE.md)
 
 ### Updating Wiki
 

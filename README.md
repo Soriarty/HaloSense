@@ -74,7 +74,7 @@ This is a hobby project in active development with a realistic timeline. Check b
 #### Phase 1 Progress (Current)
 - ✅ Project setup, Git Flow workflow, Wiki (15+ pages)
 - ✅ mmWave sensor selected (DFRobot C4001) with full documentation
-- 🔨 PIR sensor selection in progress
+- ✅ PIR sensor selected (Panasonic EKMC1604111) with full documentation
 - 🔨 Light sensor selection in progress
 
 **📊 Track detailed progress:**
@@ -178,7 +178,11 @@ HaloSense/
 - **mmWave:** [DFRobot C4001 (SEN0609)](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md)
   - 24GHz FMCW radar, UART interface
   - Presence: 16m, Motion: 25m, 100° × 40° beam
-- **PIR:** TBD (model selection in progress)
+- **PIR:** [Panasonic EKMC1604111](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/panasonic-ekmc1604111/EKMC1604111_TECHNICAL_GUIDE.md) (wall installation type)
+  - Three-step lens (12m/6m/3m zones), Digital output
+  - Coverage: 105° × 40° (asymmetric vertical), 68 detection zones
+  - Response: <0.1s instant trigger, 170μA low power
+  - Mainboard-integrated (through-hole mounting)
 - **Light Sensor:** TBD (model selection in progress)
 
 ### Physical

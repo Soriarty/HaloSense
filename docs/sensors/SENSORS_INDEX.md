@@ -17,9 +17,11 @@ docs/sensors/
 │   └── datasheets/
 │       ├── DATASHEETS_INDEX.md
 │       └── *.pdf (official datasheets)
-├── pir-sensor/             # PIR motion sensor (future)
-│   ├── PIR_TECHNICAL_GUIDE.md
+├── panasonic-ekmc1604111/  # PIR motion sensor
+│   ├── EKMC1604111_TECHNICAL_GUIDE.md
 │   └── datasheets/
+│       ├── DATASHEETS_INDEX.md
+│       └── *.pdf (official datasheets)
 └── light-sensor/           # Ambient light sensor (future)
     ├── LIGHT_TECHNICAL_GUIDE.md
     └── datasheets/
@@ -42,12 +44,20 @@ docs/sensors/
   - ESPHome compatible
 
 ### PIR Motion Sensor
-**Status:** To Be Determined
-- **Requirements:**
-  - I2C or UART interface preferred
-  - 3.3V logic level
-  - Low power consumption
-  - ESPHome library support
+**Panasonic EKMC1604111** - Wall Installation Type PaPIRs Sensor
+- **Status:** Selected
+- **Documentation:** [EKMC1604111_TECHNICAL_GUIDE.md](./panasonic-ekmc1604111/EKMC1604111_TECHNICAL_GUIDE.md)
+- **Datasheets:** [DATASHEETS_INDEX.md](./panasonic-ekmc1604111/datasheets/DATASHEETS_INDEX.md)
+- **Key Features:**
+  - Three-step lens: 12m / 6m / 3m detection zones
+  - Wide horizontal coverage: 105° (112° max)
+  - Wall-optimized vertical coverage: 40° (asymmetric +6.6° / -49°)
+  - Response time: <0.1s (instant motion trigger)
+  - Digital output interface (simple GPIO)
+  - Ultra-low power: 170μA standby
+  - 3.0V-6.0V operation (3.3V/5V compatible)
+  - 68 detection zones
+  - Mainboard-integrated (through-hole mounting)
 
 ### Ambient Light Sensor
 **Status:** To Be Determined
@@ -73,26 +83,28 @@ Each sensor documentation includes:
 
 | Sensor | Interface | GPIO Pins | Notes |
 |--------|-----------|-----------|-------|
-| DFRobot C4001 | UART | TX, RX (+ optional OUT) | Requires 1 hardware UART port |
-| PIR Sensor | TBD | TBD | Plan after component selection |
+| DFRobot C4001 | UART | TX, RX (+ optional OUT) | Requires 1 hardware UART port (UART1 or UART2) |
+| Panasonic EKMC1604111 | Digital GPIO | 1 GPIO input | **External pull-down required:** 33kΩ (±5%, 0805 SMD) to GND |
 | Light Sensor | TBD | TBD | Preferably I2C (shared bus) |
 
 **ESP32 Available Interfaces:**
-- UART0: Used for programming/debug console
-- UART1: Available (consider for C4001)
-- UART2: Available
-- I2C: Multiple devices can share SDA/SCL pins
+- **UART0:** Used for programming/debug console (reserved)
+- **UART1:** Available (recommended for C4001 mmWave)
+- **UART2:** Available (backup)
+- **GPIO:** Multiple available for digital inputs (PIR uses 1 GPIO)
+- **I2C:** Multiple devices can share SDA/SCL pins (recommended for light sensor)
 
 ## Power Budget Considerations
 
 Target total power consumption: ~5W (PoE budget)
 
-| Component | Voltage | Current (typical) | Status |
-|-----------|---------|-------------------|--------|
-| ESP32-POE | 3.3V | ~200-500mA | Base platform |
-| DFRobot C4001 | 3.3V/5V | TBD | Measure during prototyping |
-| PIR Sensor | TBD | TBD | Pending selection |
-| Light Sensor | TBD | TBD | Pending selection |
+| Component | Voltage | Current (typical) | Power | Status |
+|-----------|---------|-------------------|-------|--------|
+| ESP32-POE | 3.3V | ~200-500mA | ~0.7-1.7W | Base platform |
+| DFRobot C4001 | 3.3V/5V | TBD | TBD | Measure during prototyping |
+| Panasonic EKMC1604111 | 3.3V/5V | 170μA | <1mW | ✓ Selected, negligible power |
+| Light Sensor | TBD | TBD | TBD | Pending selection |
+| **Total Estimated** | - | ~200-500mA | **~0.7-1.7W** | Well under 5W PoE budget |
 
 ## Integration Checklist
 
