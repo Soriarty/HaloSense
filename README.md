@@ -96,18 +96,29 @@ HaloSense/
 │   ├── stl/
 │   ├── step/
 │   └── ENCLOSURE_DESIGN.md
-├── docs/                  # Documentation
-│   ├── sensors/           # Sensor technical documentation ✓
+├── docs/                  # Technical documentation (for developers)
+│   ├── wiki/              # Wiki submodule (user documentation) ✓
+│   │   ├── Home.md
+│   │   ├── Getting-Started.md
+│   │   ├── Assembly-Guide.md
+│   │   ├── FAQ.md
+│   │   └── ... (15 Wiki pages)
+│   ├── sensors/           # Sensor technical specs ✓
 │   │   ├── SENSORS_INDEX.md
 │   │   └── dfrobot-c4001/
 │   │       ├── C4001_TECHNICAL_GUIDE.md
 │   │       └── datasheets/
-│   │           └── DATASHEETS_INDEX.md
-│   ├── bom.md
-│   ├── assembly.md
-│   └── installation.md
+│   ├── GITFLOW.md         # Git Flow workflow ✓
+│   ├── CONVENTIONAL_COMMITS.md  # Commit standards ✓
+│   ├── VERSIONING.md      # Semantic versioning ✓
+│   ├── BRANCH_PROTECTION.md  # Branch rules ✓
+│   ├── GITHUB_WIKI.md     # Wiki strategy ✓
+│   ├── assembly.md        # → Redirects to Wiki
+│   ├── bom.md             # → Redirects to Wiki
+│   └── installation.md    # → Redirects to Wiki
 ├── CONTRIBUTING.md        # Contribution guidelines ✓
 ├── LICENSE.md             # Project license ✓
+├── CHANGELOG.md           # Version history ✓
 └── README.md              # This file
 ```
 
@@ -115,27 +126,30 @@ HaloSense/
 
 ## Getting Started
 
+### 📖 User Documentation
+
+**For building and using HaloSense, visit the [Wiki](https://github.com/Soriarty/HaloSense/wiki):**
+
+- **[Getting Started Guide](https://github.com/Soriarty/HaloSense/wiki/Getting-Started)** - Start here!
+- **[Bill of Materials](https://github.com/Soriarty/HaloSense/wiki/Bill-of-Materials)** - What to buy
+- **[Assembly Guide](https://github.com/Soriarty/HaloSense/wiki/Assembly-Guide)** - How to build
+- **[Installation Guide](https://github.com/Soriarty/HaloSense/wiki/Installation-Guide)** - Setup and config
+- **[FAQ](https://github.com/Soriarty/HaloSense/wiki/FAQ)** - Common questions
+- **[Troubleshooting](https://github.com/Soriarty/HaloSense/wiki/Troubleshooting)** - Problem solving
+
+### 🔧 Technical Documentation
+
+**For developers and technical details, see the [docs/](https://github.com/Soriarty/HaloSense/tree/develop/docs) directory:**
+
+- **[DFRobot C4001 mmWave Technical Guide](https://github.com/Soriarty/HaloSense/blob/develop/docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md)** - Complete UART protocol, pinouts, ESPHome integration
+- **[Git Flow Workflow](https://github.com/Soriarty/HaloSense/blob/develop/docs/GITFLOW.md)** - Development workflow
+- **[Conventional Commits](https://github.com/Soriarty/HaloSense/blob/develop/docs/CONVENTIONAL_COMMITS.md)** - Commit message format
+- **[Contributing Guidelines](https://github.com/Soriarty/HaloSense/blob/develop/CONTRIBUTING.md)** - How to contribute
+
 ### Prerequisites
 
-- **Hardware:**
-  - [DFRobot C4001 mmWave sensor](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md) (SEN0609)
-  - PIR sensor (TBD)
-  - Ambient light sensor (TBD)
-  - Supporting components (see BOM - coming soon)
-
-- **Software:**
-  - [KiCad 8.0+](https://www.kicad.org/) (for PCB modifications)
-  - [ESPHome](https://esphome.io/) (for firmware)
-  - [Home Assistant](https://www.home-assistant.io/) (optional, recommended)
-
-### Sensor Documentation
-
-Detailed technical documentation for selected sensors:
-- **[DFRobot C4001 mmWave Radar](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md)** - Complete UART protocol, pinouts, ESPHome integration
-
-### Build Instructions
-
-*Coming soon - Hardware and firmware in development*
+- **Hardware:** [See Bill of Materials on Wiki](https://github.com/Soriarty/HaloSense/wiki/Bill-of-Materials)
+- **Software:** [ESPHome](https://esphome.io/), [KiCad 8.0+](https://www.kicad.org/), [Home Assistant](https://www.home-assistant.io/) (optional)
 
 ---
 
