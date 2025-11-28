@@ -143,7 +143,7 @@ General steps:
 
 **Download:** [https://www.freecad.org/](https://www.freecad.org/)
 
-**Version:** FreeCAD 0.21+ recommended
+**Version:** FreeCAD 1.0+ recommended (tested with FreeCAD 1.0.2)
 
 ### Working with FreeCAD
 

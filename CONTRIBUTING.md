@@ -99,7 +99,7 @@ By participating, you are expected to uphold these principles.
 
 **CAD Software:**
 - **Primary:** FreeCAD (official design tool)
-- **Version:** FreeCAD 0.21+ recommended
+- **Version:** FreeCAD 1.0+ recommended (tested with FreeCAD 1.0.2)
 - Source files in `.FCStd` format required for contributions
 
 **Requirements:**
@@ -292,7 +292,7 @@ Any other relevant information.
 ### Hardware Development
 
 **Required software:**
-- [KiCad 8.0+](https://www.kicad.org/)
+- [KiCad 9.0+](https://www.kicad.org/) (tested with KiCad 9.0.6)
 - [OLIMEX ESP32-POE reference design](https://github.com/OLIMEX/ESP32-POE) (for reference)
 
 **Recommended:**
