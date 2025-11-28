@@ -60,30 +60,119 @@ Inspired by devices like the Aqara FP2, but addressing key limitations:
 
 This project is in active development. Check back for updates!
 
-### Roadmap
-- [ ] Hardware design (KiCad)
-  - [ ] Single mainboard schematic (ESP32-POE base)
-  - [ ] Circular PCB layout
-  - [ ] Top-side: ESP32 + sensor module connectors
-  - [ ] Bottom-side: PoE + vertical Ethernet + vertical USB-C
-- [ ] Firmware (ESPHome)
-  - [x] mmWave sensor selection (DFRobot C4001)
-  - [ ] mmWave sensor ESPHome configuration
-  - [ ] PIR sensor selection and integration
-  - [ ] Lux sensor selection and setup
+### Development Roadmap
+
+**Current Phase:** 🏗️ Component Selection & Design
+
+#### Phase 1: Component Selection & Planning (v0.1) - In Progress
+- [x] **Project Setup**
+  - [x] Repository structure and documentation
+  - [x] Development workflow (Git Flow, Conventional Commits)
+  - [x] Wiki with 15+ user guides
+  - [x] Issue templates and GitHub Discussions
+- [x] **mmWave Sensor Selection**
+  - [x] DFRobot C4001 (SEN0609) selected
+  - [x] Technical documentation complete
+  - [x] UART protocol specification documented
+- [ ] **PIR Sensor Selection**
+  - [ ] Research PIR modules with <0.1s response time
+  - [ ] Select PIR sensor with I2C/digital output
+  - [ ] Document sensor specifications
+- [ ] **Light Sensor Selection**
+  - [ ] Research ambient light/lux sensors (I2C preferred)
+  - [ ] Select compatible sensor module
+  - [ ] Document sensor specifications
+
+#### Phase 2: Hardware Design (v0.2) - Planned
+- [ ] **Schematic Design**
+  - [ ] ESP32 module integration (based on OLIMEX ESP32-POE)
+  - [ ] PoE circuit design (IEEE 802.3af)
+  - [ ] Power regulation (3.3V/5V rails)
+  - [ ] Sensor module connector design
+  - [ ] Vertical Ethernet connector (RJ45) integration
+  - [ ] Vertical USB-C connector integration
+- [ ] **PCB Layout**
+  - [ ] Circular form factor layout
+  - [ ] Top-side component placement (ESP32 + connectors)
+  - [ ] Bottom-side placement (PoE + vertical connectors)
+  - [ ] Signal integrity optimization
+  - [ ] Power distribution routing
+- [ ] **Design Review & BOM**
+  - [ ] Schematic review and validation
+  - [ ] Create Bill of Materials (BOM)
+  - [ ] Component sourcing verification
+  - [ ] Cost analysis
+
+#### Phase 3: Firmware Development (v0.3) - Planned
+- [ ] **ESPHome Base Configuration**
+  - [ ] ESP32 platform setup
+  - [ ] Network configuration (Ethernet/WiFi)
+  - [ ] OTA update support
+  - [ ] Home Assistant API integration
+- [ ] **Sensor Integration**
+  - [ ] mmWave sensor (DFRobot C4001) ESPHome component
+  - [ ] PIR sensor ESPHome integration
+  - [ ] Light sensor ESPHome integration
+  - [ ] Sensor calibration and testing
+- [ ] **Power Management**
+  - [ ] PoE/USB-C detection logic
   - [ ] Multi-mode power management
-- [ ] Enclosure (3D Models)
-  - [ ] Main housing design
-  - [ ] Mounting brackets
-  - [ ] Sensor windows/covers
-- [x] Documentation
-  - [x] mmWave sensor documentation ([DFRobot C4001](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md))
-  - [ ] PIR sensor documentation
-  - [ ] Light sensor documentation
-  - [ ] Bill of Materials (BOM)
-  - [ ] Assembly guide
-  - [ ] Installation instructions
+  - [ ] Power consumption optimization
+
+#### Phase 4: Enclosure Design (v0.4) - Planned
+- [ ] **3D Model Design (FreeCAD 1.0.2)**
+  - [ ] Main housing design (circular form factor)
+  - [ ] Sensor windows and covers
+  - [ ] Ventilation design for ESP32 heat dissipation
+  - [ ] Cable management features
+- [ ] **Mounting Solutions**
+  - [ ] Wall mount bracket
+  - [ ] Ceiling mount bracket
+  - [ ] Desk stand design
+- [ ] **Design Validation**
+  - [ ] Test print prototypes
+  - [ ] Verify PCB fit and clearances
+  - [ ] Validate sensor window alignment
+
+#### Phase 5: Prototype & Testing (v0.5) - Planned
+- [ ] **PCB Fabrication**
+  - [ ] Order prototype PCBs
+  - [ ] Order components (BOM)
+  - [ ] PCB assembly
+- [ ] **Hardware Testing**
+  - [ ] Power supply testing (PoE/USB-C)
+  - [ ] Sensor connectivity testing
+  - [ ] Signal integrity validation
+  - [ ] Thermal testing
+- [ ] **Firmware Testing**
+  - [ ] Sensor accuracy validation
+  - [ ] Network stability testing
+  - [ ] Power consumption measurements
+  - [ ] Home Assistant integration testing
+- [ ] **Enclosure Testing**
+  - [ ] Print and assemble enclosure
+  - [ ] Verify assembly process
+  - [ ] Test mounting solutions
+
+#### Phase 6: Documentation & Release (v1.0) - Planned
+- [ ] **User Documentation (Wiki)**
+  - [ ] Update Bill of Materials with final components
+  - [ ] Complete Assembly Guide with photos
+  - [ ] Complete Installation Instructions
   - [ ] ESPHome configuration examples
+  - [ ] Troubleshooting guide updates
+- [ ] **Technical Documentation**
+  - [ ] PIR sensor technical guide
+  - [ ] Light sensor technical guide
+  - [ ] Hardware assembly notes
+  - [ ] Firmware customization guide
+- [ ] **Release Preparation**
+  - [ ] Final design review
+  - [ ] Create release notes
+  - [ ] Tag v1.0.0 release
+  - [ ] Announcement and showcase
+
+**📊 Progress:** Phase 1 (~70% complete) → Phase 2 (Starting soon)
 
 ---
 
