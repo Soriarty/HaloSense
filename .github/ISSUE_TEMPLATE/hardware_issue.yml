@@ -1,0 +1,139 @@
+name: 🔌 Hardware Issue
+description: Report a hardware-related problem (PCB, components, assembly)
+title: "[Hardware]: "
+labels: ["hardware", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a hardware issue! Please provide detailed information to help diagnose the problem.
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue Type
+      description: What type of hardware issue is this?
+      options:
+        - PCB Design Issue
+        - Component Selection/Sourcing
+        - Assembly Problem
+        - Power Issue (PoE/USB-C)
+        - Sensor Integration
+        - Connectivity Issue (Ethernet/WiFi)
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Issue Description
+      description: A clear and concise description of the hardware issue
+      placeholder: Describe the hardware issue...
+    validations:
+      required: true
+
+  - type: input
+    id: hardware-revision
+    attributes:
+      label: Hardware Revision
+      description: Which hardware revision are you using?
+      placeholder: e.g., v1.0, v1.1
+    validations:
+      required: false
+
+  - type: dropdown
+    id: power-mode
+    attributes:
+      label: Power Mode
+      description: How is the device powered?
+      options:
+        - PoE (Power over Ethernet)
+        - USB-C only
+        - Ethernet + USB-C (Hybrid)
+        - Not applicable
+    validations:
+      required: false
+
+  - type: textarea
+    id: components
+    attributes:
+      label: Components Involved
+      description: List the specific components involved in this issue
+      placeholder: |
+        - mmWave sensor: DFRobot C4001
+        - PIR sensor: [model]
+        - Light sensor: [model]
+        - Other: [specify]
+    validations:
+      required: false
+
+  - type: textarea
+    id: measurements
+    attributes:
+      label: Measurements/Observations
+      description: Any voltage measurements, current draw, temperature readings, etc.
+      placeholder: |
+        - Voltage on pin X: XX.XX V
+        - Current draw: XXX mA
+        - Temperature: XX°C
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: How to reproduce this hardware issue?
+      placeholder: |
+        1. Connect power via...
+        2. Observe...
+        3. Measure...
+    validations:
+      required: false
+
+  - type: textarea
+    id: photos
+    attributes:
+      label: Photos/Diagrams
+      description: Add photos of the PCB, assembly, or diagrams. Drag and drop images here.
+      placeholder: Attach photos or diagrams...
+    validations:
+      required: false
+
+  - type: textarea
+    id: schematic
+    attributes:
+      label: Schematic Reference
+      description: Reference to specific schematic section or component designators
+      placeholder: |
+        - Sheet: [X]
+        - Component: [RX, CX, UX, etc.]
+        - Net: [net name]
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other relevant information
+      placeholder: Add any other context...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: I have verified power supply voltages are correct
+          required: false
+        - label: I have checked for shorts or solder bridges
+          required: false
+        - label: I have included photos or diagrams
+          required: false

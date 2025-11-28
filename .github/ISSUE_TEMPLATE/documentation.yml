@@ -1,0 +1,114 @@
+name: 📚 Documentation Issue
+description: Report an issue or suggest improvements to documentation
+title: "[Docs]: "
+labels: ["documentation", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve our documentation! Please provide details below.
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue Type
+      description: What type of documentation issue is this?
+      options:
+        - Missing Information
+        - Incorrect Information
+        - Unclear/Confusing
+        - Typo/Grammar
+        - Broken Link
+        - Outdated Information
+        - Suggestion for Improvement
+        - New Documentation Needed
+    validations:
+      required: true
+
+  - type: dropdown
+    id: location
+    attributes:
+      label: Documentation Location
+      description: Where is the documentation issue?
+      options:
+        - Wiki (User Guides)
+        - README.md
+        - Technical Docs (docs/)
+        - Code Comments
+        - CONTRIBUTING.md
+        - Sensor Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: page
+    attributes:
+      label: Specific Page/File
+      description: Which page or file has the issue?
+      placeholder: e.g., "Getting Started", "HARDWARE_DESIGN.md", "C4001_TECHNICAL_GUIDE.md"
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Issue Description
+      description: Describe the documentation issue or improvement
+      placeholder: |
+        What is wrong or missing?
+        What needs to be improved?
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current Documentation
+      description: Quote the current problematic text (if applicable)
+      placeholder: |
+        > Current text that needs fixing...
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggested
+    attributes:
+      label: Suggested Improvement
+      description: How should the documentation be improved?
+      placeholder: |
+        Suggested text or changes...
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Why is this change needed? What problem does it solve?
+      placeholder: |
+        This is needed because...
+        It would help users by...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Are you willing to contribute?
+      options:
+        - label: I am willing to submit a PR to fix this documentation issue
+          required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: I have checked the latest version of the documentation
+          required: false

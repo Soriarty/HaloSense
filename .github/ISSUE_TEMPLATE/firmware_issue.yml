@@ -1,0 +1,170 @@
+name: 💾 Firmware Issue
+description: Report a firmware/ESPHome configuration problem
+title: "[Firmware]: "
+labels: ["firmware", "esphome", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a firmware issue! Please provide detailed information about the ESPHome configuration problem.
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue Type
+      description: What type of firmware issue is this?
+      options:
+        - Sensor Configuration
+        - Network Connectivity (WiFi/Ethernet)
+        - Home Assistant Integration
+        - Power Management
+        - Compilation Error
+        - Runtime Error/Crash
+        - Performance Issue
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Issue Description
+      description: A clear and concise description of the firmware issue
+      placeholder: Describe the issue...
+    validations:
+      required: true
+
+  - type: input
+    id: esphome-version
+    attributes:
+      label: ESPHome Version
+      description: Which version of ESPHome are you using?
+      placeholder: e.g., 2023.12.0
+    validations:
+      required: true
+
+  - type: input
+    id: firmware-version
+    attributes:
+      label: Firmware Version
+      description: Which HaloSense firmware version?
+      placeholder: e.g., FW-1.0.0
+    validations:
+      required: false
+
+  - type: dropdown
+    id: connectivity
+    attributes:
+      label: Connectivity Mode
+      description: How is the device connected?
+      options:
+        - Ethernet (PoE)
+        - Ethernet (USB-C power)
+        - WiFi (USB-C power)
+        - Not applicable
+    validations:
+      required: false
+
+  - type: textarea
+    id: configuration
+    attributes:
+      label: ESPHome Configuration (YAML)
+      description: Paste the relevant part of your ESPHome YAML configuration
+      placeholder: |
+        esphome:
+          name: halosense
+          platform: ESP32
+
+        # Paste relevant configuration here...
+      render: yaml
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: ESPHome Logs
+      description: Paste relevant logs from ESPHome
+      placeholder: |
+        Paste logs here...
+        Use: esphome logs firmware/halosense.yaml
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: How to reproduce this firmware issue?
+      placeholder: |
+        1. Configure ESPHome with...
+        2. Compile/Upload firmware
+        3. Observe...
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen?
+      placeholder: Expected behavior...
+    validations:
+      required: false
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happens?
+      placeholder: Actual behavior...
+    validations:
+      required: false
+
+  - type: textarea
+    id: sensors
+    attributes:
+      label: Sensors Configured
+      description: Which sensors are configured in your setup?
+      placeholder: |
+        - mmWave: DFRobot C4001
+        - PIR: [model]
+        - Light: [model]
+    validations:
+      required: false
+
+  - type: textarea
+    id: home-assistant
+    attributes:
+      label: Home Assistant Details (if applicable)
+      description: Home Assistant version and integration details
+      placeholder: |
+        - Home Assistant version: 2023.12.0
+        - Integration method: ESPHome API / MQTT
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other relevant information
+      placeholder: Add any other context...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-submission Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: I am using the latest stable ESPHome release
+          required: false
+        - label: I have included relevant configuration and logs
+          required: false
+        - label: I have tested with minimal configuration (if possible)
+          required: false
