@@ -11,9 +11,9 @@ Each sensor has its own subdirectory containing:
 
 ```
 docs/sensors/
-├── SENSORS_INDEX.md (this file)
+├── README.md (this file)
 ├── dfrobot-c4001/          # mmWave radar sensor
-│   ├── C4001_TECHNICAL_GUIDE.md
+│   ├── README.md
 │   └── datasheets/
 │       ├── DATASHEETS_INDEX.md
 │       └── *.pdf (official datasheets)
@@ -34,8 +34,8 @@ docs/sensors/
 ### mmWave Radar Sensor
 **DFRobot C4001 (SEN0609)** - 24GHz FMCW Radar
 - **Status:** Selected
-- **Documentation:** [C4001_TECHNICAL_GUIDE.md](./dfrobot-c4001/C4001_TECHNICAL_GUIDE.md)
-- **Datasheets:** [DATASHEETS_INDEX.md](./dfrobot-c4001/datasheets/DATASHEETS_INDEX.md)
+- **Documentation:** [README.md](./dfrobot-c4001/README.md)
+- **Datasheets:** [README.md](./dfrobot-c4001/datasheets/README.md)
 - **Key Features:**
   - Presence detection: up to 16m
   - Motion detection: up to 25m
@@ -48,8 +48,8 @@ docs/sensors/
 ### PIR Motion Sensor
 **Panasonic EKMC1604111** - Wall Installation Type PaPIRs Sensor
 - **Status:** Selected
-- **Documentation:** [EKMC1604111_TECHNICAL_GUIDE.md](./panasonic-ekmc1604111/EKMC1604111_TECHNICAL_GUIDE.md)
-- **Datasheets:** [DATASHEETS_INDEX.md](./panasonic-ekmc1604111/datasheets/DATASHEETS_INDEX.md)
+- **Documentation:** [README.md](./panasonic-ekmc1604111/README.md)
+- **Datasheets:** [README.md](./panasonic-ekmc1604111/datasheets/README.md)
 - **Key Features:**
   - Three-step lens: 12m / 6m / 3m detection zones
   - Wide horizontal coverage: 105° (112° max)
@@ -64,8 +64,8 @@ docs/sensors/
 ### Ambient Light Sensor
 **ROHM BH1750FVI** - Digital 16-bit I2C Ambient Light Sensor
 - **Status:** Selected
-- **Documentation:** [BH1750_TECHNICAL_GUIDE.md](./rohm-bh1750/BH1750_TECHNICAL_GUIDE.md)
-- **Datasheets:** [DATASHEETS_INDEX.md](./rohm-bh1750/datasheets/DATASHEETS_INDEX.md)
+- **Documentation:** [README.md](./rohm-bh1750/README.md)
+- **Datasheets:** [README.md](./rohm-bh1750/datasheets/README.md)
 - **Key Features:**
   - Measurement range: 1-65,535 lx
   - Resolution: 1 lx (H-Resolution mode)
@@ -122,22 +122,22 @@ Target total power consumption: ~5W (PoE budget available: 15.4W)
 **Design Margin:** 1.3W typical / 15.4W available = **8.5% PoE capacity utilized**
 **Worst-case scenario:** 1.8W (WiFi fallback active, all components at max current)
 
-**See detailed power budget analysis:** [`POWER_BUDGET.md`](../POWER_BUDGET.md)
+**See detailed power budget analysis:** [`power-budget.md`](../hardware/power-budget.md)
 
 ## Integration Checklist
 
 When adding a new sensor:
 - [ ] Create sensor subdirectory (e.g., `sensor-name/`)
-- [ ] Create `SENSOR_NAME_TECHNICAL_GUIDE.md` with detailed technical documentation
+- [ ] Create `README.md` with detailed technical documentation
 - [ ] Create `datasheets/` subdirectory for PDF files
-- [ ] Create `datasheets/DATASHEETS_INDEX.md` to catalog PDFs
+- [ ] Create `datasheets/README.md` to catalog PDFs
 - [ ] Download and organize official datasheets
 - [ ] Verify voltage level compatibility (3.3V/5V)
 - [ ] Confirm interface type and GPIO requirements
 - [ ] Check ESPHome library availability
 - [ ] Measure power consumption
-- [ ] Update GPIO allocation table in SENSORS_INDEX.md
-- [ ] Update power budget calculations in SENSORS_INDEX.md
+- [ ] Update GPIO allocation table in sensors/README.md
+- [ ] Update power budget calculations in sensors/README.md
 - [ ] Add wiring examples for ESP32
 - [ ] Test basic functionality before integration
 

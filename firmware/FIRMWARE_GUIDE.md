@@ -106,7 +106,7 @@ mqtt_password: "mqtt_pass"
 
 ### DFRobot C4001 mmWave Radar
 
-**Documentation:** [docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md](../docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md)
+**Documentation:** [docs/sensors/dfrobot-c4001/README.md](../docs/sensors/dfrobot-c4001/README.md)
 
 **Configuration:**
 ```yaml
@@ -295,7 +295,7 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md) for guidelines on contributing to firm
 - **ESPHome Documentation:** https://esphome.io/
 - **Home Assistant:** https://www.home-assistant.io/
 - **ESP32 Datasheet:** https://www.espressif.com/en/products/socs/esp32
-- **DFRobot C4001 Guide:** [docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md](../docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md)
+- **DFRobot C4001 Guide:** [docs/sensors/dfrobot-c4001/README.md](../docs/sensors/dfrobot-c4001/README.md)
 
 ## License
 

@@ -40,7 +40,7 @@ These PDF files are reference materials for:
 - **EKMC Series Datasheet:** Complete electrical specifications, detection characteristics, pinout, dimensions
 - **EKMB/EKMC Reference:** Design guidelines, application examples, performance optimization
 
-For quick reference and integration details, see the main sensor documentation: [../EKMC1604111_TECHNICAL_GUIDE.md](../EKMC1604111_TECHNICAL_GUIDE.md)
+For quick reference and integration details, see the main sensor documentation: [../README.md](../README.md)
 
 ## Model Selection Notes
 

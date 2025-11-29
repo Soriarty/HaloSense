@@ -146,9 +146,9 @@ HaloSense/
 
 **For developers and technical details, see the [docs/](https://github.com/Soriarty/HaloSense/tree/develop/docs) directory:**
 
-- **[DFRobot C4001 mmWave Technical Guide](https://github.com/Soriarty/HaloSense/blob/develop/docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md)** - Complete UART protocol, pinouts, ESPHome integration
-- **[Git Flow Workflow](https://github.com/Soriarty/HaloSense/blob/develop/docs/GITFLOW.md)** - Development workflow
-- **[Conventional Commits](https://github.com/Soriarty/HaloSense/blob/develop/docs/CONVENTIONAL_COMMITS.md)** - Commit message format
+- **[DFRobot C4001 mmWave Technical Guide](https://github.com/Soriarty/HaloSense/blob/develop/docs/sensors/dfrobot-c4001/README.md)** - Complete UART protocol, pinouts, ESPHome integration
+- **[Git Flow Workflow](https://github.com/Soriarty/HaloSense/blob/develop/docs/development/git-flow.md)** - Development workflow
+- **[Conventional Commits](https://github.com/Soriarty/HaloSense/blob/develop/docs/development/conventional-commits.md)** - Commit message format
 - **[Contributing Guidelines](https://github.com/Soriarty/HaloSense/blob/develop/CONTRIBUTING.md)** - How to contribute
 
 ### Prerequisites
@@ -175,10 +175,10 @@ HaloSense/
 - **Protocol:** MQTT, Home Assistant API
 
 ### Sensors
-- **mmWave:** [DFRobot C4001 (SEN0609)](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md)
+- **mmWave:** [DFRobot C4001 (SEN0609)](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/dfrobot-c4001/README.md)
   - 24GHz FMCW radar, UART interface
   - Presence: 16m, Motion: 25m, 100° × 40° beam
-- **PIR:** [Panasonic EKMC1604111](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/panasonic-ekmc1604111/EKMC1604111_TECHNICAL_GUIDE.md) (wall installation type)
+- **PIR:** [Panasonic EKMC1604111](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/panasonic-ekmc1604111/README.md) (wall installation type)
   - Three-step lens (12m/6m/3m zones), Digital output
   - Coverage: 105° × 40° (asymmetric vertical), 68 detection zones
   - Response: <0.1s instant trigger, 170μA low power
@@ -258,11 +258,11 @@ Contributions are welcome! Whether it's hardware improvements, firmware enhancem
 - **Discussions:** [GitHub Discussions](https://github.com/Soriarty/HaloSense/discussions) - General questions and community
 - **Contributing:** [Contribution Guidelines](CONTRIBUTING.md) - How to contribute
 - **Technical Documentation:**
-  - [Sensor Documentation Index](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/SENSORS_INDEX.md)
-  - [Git Flow Workflow](https://github.com/Soriarty/HaloSense/blob/main/docs/GITFLOW.md)
-  - [Conventional Commits Guide](https://github.com/Soriarty/HaloSense/blob/main/docs/CONVENTIONAL_COMMITS.md)
-  - [Versioning Guide](https://github.com/Soriarty/HaloSense/blob/main/docs/VERSIONING.md)
-  - [GitHub Wiki Strategy](https://github.com/Soriarty/HaloSense/blob/main/docs/GITHUB_WIKI.md)
+  - [Sensor Documentation Index](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/README.md)
+  - [Git Flow Workflow](https://github.com/Soriarty/HaloSense/blob/main/docs/development/git-flow.md)
+  - [Conventional Commits Guide](https://github.com/Soriarty/HaloSense/blob/main/docs/development/conventional-commits.md)
+  - [Versioning Guide](https://github.com/Soriarty/HaloSense/blob/main/docs/development/versioning.md)
+  - [GitHub Wiki Strategy](https://github.com/Soriarty/HaloSense/blob/main/docs/development/github-wiki.md)
 - **Author:** [@Soriarty](https://github.com/Soriarty)
 - **Home Assistant Community:** [Coming soon]
 

@@ -23,7 +23,7 @@ These PDF files are reference materials for:
 - **Dimensional Drawing:** PCB layout planning, enclosure design, mounting hole positions
 - **Communication Protocol:** UART command implementation, custom firmware development, deep integration
 
-For quick reference and general specifications, see the main sensor documentation: [../C4001_TECHNICAL_GUIDE.md](../C4001_TECHNICAL_GUIDE.md)
+For quick reference and general specifications, see the main sensor documentation: [../README.md](../README.md)
 
 ---
 

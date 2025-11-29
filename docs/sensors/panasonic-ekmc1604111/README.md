@@ -565,8 +565,8 @@ All datasheets are available in the `datasheets/` subdirectory:
 
 ### Related HaloSense Documentation
 
-- **Sensor Index:** [docs/sensors/SENSORS_INDEX.md](../SENSORS_INDEX.md) - All sensors overview
-- **mmWave Sensor:** [docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md](../dfrobot-c4001/C4001_TECHNICAL_GUIDE.md) - Complementary sensor
+- **Sensor Index:** [docs/sensors/README.md](../README.md) - All sensors overview
+- **mmWave Sensor:** [docs/sensors/dfrobot-c4001/README.md](../dfrobot-c4001/README.md) - Complementary sensor
 - **Hardware Design:** `docs/hardware/HARDWARE_DESIGN.md` (planned) - PCB integration
 
 ## License

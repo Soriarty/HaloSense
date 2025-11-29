@@ -351,7 +351,7 @@ IP [First Digit] [Second Digit] [Optional Letters]
 **References:**
 - IEC 60529:2013 (Degrees of protection provided by enclosures - IP Code)
 - JEDEC J-STD-020 (Moisture/Reflow Sensitivity Classification for Nonhermetic Solid State Surface Mount Devices)
-- HaloSense Power Budget Analysis (`POWER_BUDGET.md`)
+- HaloSense Power Budget Analysis (`power-budget.md`)
 
 **Revision History:**
 - **v1.0 (2025-11-29):** Initial IP rating documentation with IP54 target specification

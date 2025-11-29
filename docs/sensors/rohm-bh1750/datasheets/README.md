@@ -35,7 +35,7 @@ This PDF file is the reference material for:
 - **Integration:** Schematic design, PCB layout, I2C address selection (ADDR pin)
 - **Firmware Development:** Command protocol implementation, measurement mode selection
 
-For quick reference and ESPHome integration details, see the main sensor documentation: [../BH1750_TECHNICAL_GUIDE.md](../BH1750_TECHNICAL_GUIDE.md)
+For quick reference and ESPHome integration details, see the main sensor documentation: [../README.md](../README.md)
 
 ## Key Specifications Summary
 

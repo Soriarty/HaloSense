@@ -166,13 +166,14 @@ When adding documentation for new sensors, follow this structure:
 docs/sensors/sensor-name/
 ├── SENSOR_NAME_TECHNICAL_GUIDE.md
 └── datasheets/
-    ├── DATASHEETS_INDEX.md
+    ├── README.md
     └── *.pdf
 ```
 
 **Reference examples:**
-- mmWave sensor: [docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md](docs/sensors/dfrobot-c4001/C4001_TECHNICAL_GUIDE.md)
-- PIR sensor: [docs/sensors/panasonic-ekmc1604111/EKMC1604111_TECHNICAL_GUIDE.md](docs/sensors/panasonic-ekmc1604111/EKMC1604111_TECHNICAL_GUIDE.md)
+- mmWave sensor: [docs/sensors/dfrobot-c4001/README.md](docs/sensors/dfrobot-c4001/README.md)
+- PIR sensor: [docs/sensors/panasonic-ekmc1604111/README.md](docs/sensors/panasonic-ekmc1604111/README.md)
+- Light sensor: [docs/sensors/rohm-bh1750/README.md](docs/sensors/rohm-bh1750/README.md)
 
 ### Updating Wiki
 
