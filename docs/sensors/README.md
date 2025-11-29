@@ -149,4 +149,10 @@ When adding a new sensor:
 
 ---
 
+## Navigation
+
+← **[Main Documentation](../../README.md)** | **[Hardware](../hardware/README.md)** | **[Development](../development/README.md)**
+
+---
+
 **Last Updated:** 2025-11-29

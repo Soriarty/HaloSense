@@ -344,6 +344,12 @@ IP [First Digit] [Second Digit] [Optional Letters]
 
 ---
 
+## Navigation
+
+← **[Hardware Documentation](README.md)** | **[Sensors](../sensors/README.md)** | **[Development](../development/README.md)** | **[Main README](../../README.md)**
+
+---
+
 **Document Version:** 1.0
 **Last Updated:** 2025-11-29
 **Author:** HaloSense Development Team
