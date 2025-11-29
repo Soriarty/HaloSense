@@ -22,9 +22,11 @@ docs/sensors/
 │   └── datasheets/
 │       ├── DATASHEETS_INDEX.md
 │       └── *.pdf (official datasheets)
-└── light-sensor/           # Ambient light sensor (future)
-    ├── LIGHT_TECHNICAL_GUIDE.md
+└── rohm-bh1750/            # Ambient light sensor
+    ├── BH1750_TECHNICAL_GUIDE.md
     └── datasheets/
+        ├── DATASHEETS_INDEX.md
+        └── *.pdf (official datasheets)
 ```
 
 ## Sensor Inventory
@@ -60,13 +62,21 @@ docs/sensors/
   - Mainboard-integrated (through-hole mounting)
 
 ### Ambient Light Sensor
-**Status:** To Be Determined
-- **Requirements:**
-  - I2C interface preferred
-  - Lux measurement capability
-  - 3.3V logic level
-  - Low power consumption
-  - ESPHome library support
+**ROHM BH1750FVI** - Digital 16-bit I2C Ambient Light Sensor
+- **Status:** Selected
+- **Documentation:** [BH1750_TECHNICAL_GUIDE.md](./rohm-bh1750/BH1750_TECHNICAL_GUIDE.md)
+- **Datasheets:** [DATASHEETS_INDEX.md](./rohm-bh1750/datasheets/DATASHEETS_INDEX.md)
+- **Key Features:**
+  - Measurement range: 1-65,535 lx
+  - Resolution: 1 lx (H-Resolution mode)
+  - I2C interface (0x23 or 0x5C address)
+  - Supply voltage: 2.4-3.6V (3.3V operation)
+  - Current consumption: 120μA @ 100lx (0.4mW typical)
+  - Power-down mode: 0.01μA
+  - Spectral response close to human eye
+  - MSL 3 rating (better moisture handling)
+  - ESPHome native support
+  - JLCPCB available (C78960, Extended Parts)
 
 ## Documentation Structure
 
@@ -85,7 +95,7 @@ Each sensor documentation includes:
 |--------|-----------|-----------|-------|
 | DFRobot C4001 | UART | TX, RX (+ optional OUT) | Requires 1 hardware UART port (UART1 or UART2) |
 | Panasonic EKMC1604111 | Digital GPIO | 1 GPIO input | **External pull-down required:** 33kΩ (±5%, 0805 SMD) to GND |
-| Light Sensor | TBD | TBD | Preferably I2C (shared bus) |
+| ROHM BH1750FVI | I2C | SDA, SCL | Address: 0x23 (ADDR='L') or 0x5C (ADDR='H'), shared I2C bus |
 
 **ESP32 Available Interfaces:**
 - **UART0:** Used for programming/debug console (reserved)
@@ -96,15 +106,23 @@ Each sensor documentation includes:
 
 ## Power Budget Considerations
 
-Target total power consumption: ~5W (PoE budget)
+Target total power consumption: ~5W (PoE budget available: 15.4W)
 
 | Component | Voltage | Current (typical) | Power | Status |
 |-----------|---------|-------------------|-------|--------|
-| ESP32-POE | 3.3V | ~200-500mA | ~0.7-1.7W | Base platform |
-| DFRobot C4001 | 3.3V/5V | TBD | TBD | Measure during prototyping |
-| Panasonic EKMC1604111 | 3.3V/5V | 170μA | <1mW | ✓ Selected, negligible power |
-| Light Sensor | TBD | TBD | TBD | Pending selection |
-| **Total Estimated** | - | ~200-500mA | **~0.7-1.7W** | Well under 5W PoE budget |
+| ESP32-WROOM-32E | 3.3V | 100mA | 330mW | Base platform (Ethernet mode) |
+| LAN8720A PHY | 3.3V | 60mA | 198mW | Ethernet interface |
+| DFRobot C4001 | 3.3V | 75mA (est.) | 248mW | Measure during prototyping |
+| Panasonic EKMC1604111 | 3.3V | 0.17mA | 0.56mW | ✓ Selected, negligible power |
+| ROHM BH1750FVI | 3.3V | 0.12mA | 0.40mW | ✓ Selected, negligible power |
+| Supporting components | 3.3V | — | ~50mW | Status LED, resistors, regulators |
+| **Total (3.3V rail)** | **3.3V** | **~235mA** | **~827mW** | PoE module regulation |
+| **Total System (incl. PoE losses)** | - | - | **~1.3W** | **Excellent margin (10× headroom)** |
+
+**Design Margin:** 1.3W typical / 15.4W available = **8.5% PoE capacity utilized**
+**Worst-case scenario:** 1.8W (WiFi fallback active, all components at max current)
+
+**See detailed power budget analysis:** [`POWER_BUDGET.md`](../POWER_BUDGET.md)
 
 ## Integration Checklist
 
@@ -131,4 +149,4 @@ When adding a new sensor:
 
 ---
 
-**Last Updated:** 2025-11-28
+**Last Updated:** 2025-11-29

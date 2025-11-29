@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial project structure and documentation
 - Complete sensor documentation for DFRobot C4001 mmWave radar
+- Complete sensor documentation for Panasonic EKMC1604111 PIR sensor
+- Complete sensor documentation for ROHM BH1750FVI light sensor
+- Power budget analysis document (comprehensive system power consumption)
+- IP rating guide (IP54 enclosure design specifications)
 - Conventional Commits specification and guide
 - Semantic Versioning guide
 - Contribution guidelines
@@ -23,9 +27,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Documentation
 - **Developer Documentation (docs/):**
-  - Comprehensive technical guide for DFRobot C4001 sensor
-  - UART protocol documentation
-  - ESPHome integration examples
+  - Comprehensive technical guide for DFRobot C4001 mmWave sensor (UART protocol, ESPHome)
+  - Comprehensive technical guide for Panasonic EKMC1604111 PIR sensor (GPIO, detection zones)
+  - Comprehensive technical guide for ROHM BH1750FVI light sensor (I2C protocol, ESPHome)
+  - Power budget analysis (1.3W typical, 10× PoE margin, component-by-component breakdown)
+  - IP rating guide (IP54 target, enclosure design checklist, MSL correlation)
+  - SENSORS_INDEX.md with complete GPIO allocation and power summary
   - Git Flow workflow guide
   - Conventional Commits guide
   - Semantic Versioning guide
@@ -67,7 +74,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 **Completed:**
 - ✅ Project structure and repository organization
-- ✅ Sensor documentation (DFRobot C4001 mmWave radar)
+- ✅ Sensor selection and documentation (all 3 sensors complete)
+  - ✅ mmWave radar: DFRobot C4001 (SEN0609)
+  - ✅ PIR motion: Panasonic EKMC1604111
+  - ✅ Ambient light: ROHM BH1750FVI (MSL 3 uniformity)
+- ✅ Power budget analysis (1.3W typical, excellent PoE margin)
+- ✅ IP rating specifications (IP54 target for kitchen/bathroom)
 - ✅ Contribution guidelines
 - ✅ Conventional Commits implementation with validation
 - ✅ Semantic Versioning strategy
@@ -76,9 +88,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ✅ Developer documentation (technical specs, workflows)
 
 **In Progress:**
-- 🔨 Component selection (PIR, light sensors)
-- 🔨 Hardware design planning (KiCad)
-- 🔨 Firmware development planning (ESPHome)
+- 🔨 Hardware design planning (KiCad schematic/PCB)
+- 🔨 Firmware development planning (ESPHome YAML)
 
 **Planned:**
 - 📋 Hardware design (KiCad PCB)
