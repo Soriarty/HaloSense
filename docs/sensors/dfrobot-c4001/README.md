@@ -273,7 +273,7 @@ Done
 #### 6. UART Baud Rate Configuration
 
 **Set UART Baud:** `setUart <baudrate>`
-- Range: 4800-115200 bps, default 9600
+- Range: 4800-115200 bps, default 115200
 - **Important:** Requires `resetSystem 0` (not `sensorStart`) to activate
 
 **Example:**

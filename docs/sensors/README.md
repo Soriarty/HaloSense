@@ -41,7 +41,7 @@ docs/sensors/
   - Motion detection: up to 25m
   - Distance and velocity measurement
   - 100° × 40° beam angle
-  - UART interface (9600 baud)
+  - UART interface (115200 baud default, configurable 4800-115200)
   - 3.3V/5V operation
   - ESPHome compatible
 

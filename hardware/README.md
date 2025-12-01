@@ -39,7 +39,7 @@ The HaloSense design uses the **OLIMEX ESP32-POE** board as a reference design, 
 
 **Repository:** https://github.com/OLIMEX/ESP32-POE.git
 
-**Latest Revision:** M1 (KiCad 6+ format)
+**Latest Revision:** M1 (KiCad 7+ format)
 - Schematic: `HARDWARE/ESP32-PoE-hardware-revision-M1/ESP32-PoE_Rev_M1.kicad_sch`
 - PCB Layout: `HARDWARE/ESP32-PoE-hardware-revision-M1/ESP32-PoE_Rev_M1.kicad_pcb`
 - Gerbers: `HARDWARE/ESP32-PoE-hardware-revision-M1/Gerbers/`
@@ -81,7 +81,7 @@ We use this as a proven reference architecture for ESP32 + Ethernet + PoE functi
 ## Development Tools
 
 ### Required Software
-- [KiCad 8.0+](https://www.kicad.org/) - PCB design software
+- [KiCad 9.0+](https://www.kicad.org/) - PCB design software
 - Git for version control
 
 ### KiCad Libraries
