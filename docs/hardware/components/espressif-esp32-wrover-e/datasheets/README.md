@@ -4,12 +4,18 @@ This directory contains the official PDF datasheets and technical documentation 
 
 ## Files
 
-**TODO:** Add the following datasheets to this directory:
+### Available Datasheets
 
-- **esp32-wrover-e_esp32-wrover-ie_datasheet_en.pdf** - ESP32-WROVER-E/IE Module Datasheet
+- **esp32-wrover-e_esp32-wrover-ie_datasheet_en.pdf** ✓ Present (v2.2, 1.4 MB)
+  - ESP32-WROVER-E/IE Module Datasheet
   - Source: https://www.espressif.com/sites/default/files/documentation/esp32-wrover-e_esp32-wrover-ie_datasheet_en.pdf
   - Contains: Complete module specifications with PSRAM, pin configuration, electrical characteristics, mechanical drawings
-  - **Key sections:** GPIO16/GPIO17 limitations, PSRAM specifications
+  - **Key sections:** GPIO16/GPIO17 limitations (NOT CONNECTED), PSRAM specifications
+  - **Verified specs:** Up to 24 GPIOs available, GPIO16/GPIO17 NC, 2/8 MB PSRAM, 4/8/16 MB Flash, 18.0 × 31.4 mm, 3.0-3.6V operation
+
+### Additional Reference Documents (Not Included)
+
+The following documents are available online and referenced in the main component documentation:
 
 - **esp32_datasheet_en.pdf** - ESP32 SoC Datasheet (same as WROOM-32E)
   - Source: https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf

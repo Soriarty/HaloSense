@@ -4,11 +4,17 @@ This directory contains the official PDF datasheets and technical documentation 
 
 ## Files
 
-**TODO:** Add the following datasheets to this directory:
+### Available Datasheets
 
-- **esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf** - ESP32-WROOM-32E/32UE Module Datasheet
+- **esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf** ✓ Present (v2.0, 1.2 MB)
+  - ESP32-WROOM-32E/32UE Module Datasheet
   - Source: https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf
   - Contains: Complete module specifications, pin configuration, electrical characteristics, mechanical drawings
+  - **Verified specs:** 26 GPIOs available, all GPIO16/GPIO17 functional, 4/8/16 MB Flash, 18.0 × 25.5 mm, 3.0-3.6V operation
+
+### Additional Reference Documents (Not Included)
+
+The following documents are available online and referenced in the main component documentation:
 
 - **esp32_datasheet_en.pdf** - ESP32 SoC Datasheet
   - Source: https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf

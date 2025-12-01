@@ -6,7 +6,7 @@
 **Series:** ESP32-WROVER-E (commercial) / ESP32-WROVER-IE (industrial)
 **Type:** Wi-Fi + Bluetooth + Bluetooth LE MCU Module **with PSRAM**
 **Flash Memory:** 4MB (N4) / 8MB (N8) / 16MB (N16) variants
-**PSRAM:** 8MB integrated PSRAM (SPI interface)
+**PSRAM:** 2MB (R2) / 8MB (R8) integrated PSRAM (SPI interface)
 **Antenna:** PCB antenna
 
 ## Purpose in HaloSense
@@ -27,7 +27,7 @@ The ESP32-WROVER-E module is an **alternative** to ESP32-WROOM-32E with addition
 | **CPU** | Dual-core Xtensa® LX6 @ 240 MHz |
 | **ROM** | 448 KB |
 | **SRAM** | 520 KB (internal) |
-| **PSRAM** | **8MB (external, SPI interface)** ← **Key difference** |
+| **PSRAM** | **2MB or 8MB (external, SPI interface)** ← **Key difference** |
 | **Flash** | 4MB / 8MB / 16MB (external SPI flash) |
 | **RTC SRAM** | 16 KB (slow), 8 KB (fast) |
 
@@ -208,7 +208,7 @@ esphome:
 
 | Feature | Without PSRAM (WROOM) | With PSRAM (WROVER) |
 |---------|----------------------|---------------------|
-| **Available RAM** | ~200 KB (after framework) | ~200 KB + **8 MB PSRAM** |
+| **Available RAM** | ~200 KB (after framework) | ~200 KB + **2/8 MB PSRAM** |
 | **Sensor Buffers** | Limited buffering | Large data logging buffers |
 | **Image Processing** | Not feasible | Possible (future camera integration) |
 | **Complex Algorithms** | Memory constrained | Ample headroom |
@@ -318,7 +318,7 @@ binary_sensor:
 |---------|----------------|----------------|------------------|
 | **Flash** | 4/8/16 MB | 4/8/16 MB | Same |
 | **SRAM** | 520 KB | 520 KB | Same |
-| **PSRAM** | ❌ None | ✅ 8 MB | WROVER advantage |
+| **PSRAM** | ❌ None | ✅ 2/8 MB | WROVER advantage |
 | **GPIO16** | ✅ Available | ❌ NC (PSRAM CS) | **WROVER limitation** |
 | **GPIO17** | ✅ Available | ❌ NC (PSRAM CLK) | **WROVER limitation** |
 | **Ethernet (OLIMEX)** | ✅ Compatible | ❌ Requires workaround | **WROOM recommended** |
