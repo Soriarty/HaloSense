@@ -26,8 +26,29 @@ hardware/
 ├── schematics/     # KiCad schematic files (.kicad_sch)
 ├── pcb/            # KiCad PCB layout files (.kicad_pcb)
 ├── gerbers/        # Manufacturing files (Gerber + drill)
-└── README.md       # This file
+├── reference/      # Reference designs (git submodules)
+│   └── esp32-poe/  # OLIMEX ESP32-POE reference design
+└── HARDWARE_DESIGN.md  # This file
 ```
+
+## Reference Design
+
+The HaloSense design uses the **OLIMEX ESP32-POE** board as a reference design, available as a git submodule:
+
+**Location:** `hardware/reference/esp32-poe/`
+
+**Repository:** https://github.com/OLIMEX/ESP32-POE.git
+
+**Latest Revision:** M1 (KiCad 6+ format)
+- Schematic: `HARDWARE/ESP32-PoE-hardware-revision-M1/ESP32-PoE_Rev_M1.kicad_sch`
+- PCB Layout: `HARDWARE/ESP32-PoE-hardware-revision-M1/ESP32-PoE_Rev_M1.kicad_pcb`
+- Gerbers: `HARDWARE/ESP32-PoE-hardware-revision-M1/Gerbers/`
+
+**Usage:**
+- Reference for ESP32 + Ethernet + PoE circuitry
+- Component selection guidance
+- PCB layout best practices
+- NOT used as a component - we create a custom variant
 
 ## Design Requirements
 

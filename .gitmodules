@@ -1,3 +1,6 @@
 [submodule "docs/wiki"]
 	path = docs/wiki
 	url = https://github.com/Soriarty/HaloSense.wiki.git
+[submodule "hardware/reference/esp32-poe"]
+	path = hardware/reference/esp32-poe
+	url = https://github.com/OLIMEX/ESP32-POE.git

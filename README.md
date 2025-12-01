@@ -93,6 +93,8 @@ HaloSense/
 │   ├── schematics/
 │   ├── pcb/
 │   ├── gerbers/
+│   ├── reference/         # Reference designs (submodules)
+│   │   └── esp32-poe/     # OLIMEX ESP32-POE reference ✓
 │   └── HARDWARE_DESIGN.md
 ├── firmware/              # ESPHome configuration (planned)
 │   ├── halosense.yaml
@@ -278,7 +280,7 @@ Contributions are welcome! Whether it's hardware improvements, firmware enhancem
 
 ## Acknowledgments
 
-- **OLIMEX** - ESP32-POE board design foundation
+- **OLIMEX** - [ESP32-POE board](https://github.com/OLIMEX/ESP32-POE) design foundation (included as git submodule in `hardware/reference/esp32-poe/`)
 - **ESPHome** - Making ESP32 integration seamless
 - **Home Assistant** - Open-source smart home platform
 - Inspired by **Aqara FP2** presence sensor design
