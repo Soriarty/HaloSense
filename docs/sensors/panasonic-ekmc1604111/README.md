@@ -567,7 +567,7 @@ All datasheets are available in the `datasheets/` subdirectory:
 
 - **Sensor Index:** [docs/sensors/README.md](../README.md) - All sensors overview
 - **mmWave Sensor:** [docs/sensors/dfrobot-c4001/README.md](../dfrobot-c4001/README.md) - Complementary sensor
-- **Hardware Design:** `docs/hardware/HARDWARE_DESIGN.md` (planned) - PCB integration
+- **Hardware Design:** `hardware/README.md` - PCB integration reference
 
 ## License
 

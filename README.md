@@ -95,7 +95,7 @@ HaloSense/
 │   ├── gerbers/
 │   ├── reference/         # Reference designs (submodules)
 │   │   └── esp32-poe/     # OLIMEX ESP32-POE reference ✓
-│   └── HARDWARE_DESIGN.md
+│   └── README.md
 ├── firmware/              # ESPHome configuration (planned)
 │   ├── halosense.yaml
 │   └── FIRMWARE_GUIDE.md
