@@ -4,6 +4,36 @@ This directory contains hardware design specifications and analysis for the Halo
 
 ## 📄 Documents
 
+### Hardware Components
+
+**[Components Overview & GPIO Planning](components/README.md)** - Complete component documentation
+
+**MCU & Wireless:**
+- **[ESP32-WROOM-32E](components/espressif-esp32-wroom-32e/README.md)** - Main MCU (recommended)
+  - All 38 GPIOs available, Wi-Fi + Bluetooth, Ethernet RMII compatible
+- **[ESP32-WROVER-E](components/espressif-esp32-wrover-e/README.md)** - MCU with PSRAM (not recommended)
+  - GPIO16/17 unavailable (PSRAM internal use), Ethernet clock conflict
+
+**Networking:**
+- **[Microchip LAN8720A](components/microchip-lan8720a/README.md)** - Ethernet PHY
+  - 10/100 Mbps RMII interface, ~60 mA @ 3.3V
+- **[TI TPS2378](components/ti-tps2378/README.md)** - PoE Controller
+  - IEEE 802.3af/at, Class 0/4 selectable, up to 25.5W
+- **[WCH CH340X](components/wch-ch340x/README.md)** - USB-to-UART Bridge
+  - ESP32 programming interface, auto-reset support
+
+**Power Management:**
+- **[Silergy TX4138](components/silergy-tx4138/README.md)** - 5V Buck Converter
+  - 48V PoE → 5V, 4.5-60V input, up to 4A output
+- **[TI TPS62A02A](components/ti-tps62a02a/README.md)** - 3.3V Buck Converter
+  - 5V → 3.3V for LAN PHY, 2.4MHz switching, 2A output
+- **[TP4054](components/tp-tp4054/README.md)** - Li-Po Battery Charger
+  - Single cell Li-Po/Li-Ion, 4.2V float, optional backup
+
+**Connectors:**
+- **[Hirose DM3AT](components/hirose-dm3at/README.md)** - Micro SD Socket (omitted)
+  - Boot strapping conflicts, not included in HaloSense design
+
 ### Power and Electrical
 
 - **[power-budget.md](power-budget.md)** - Complete power consumption analysis
@@ -36,4 +66,4 @@ This directory contains hardware design specifications and analysis for the Halo
 
 ---
 
-**Last Updated:** 2025-11-29
+**Last Updated:** 2025-12-01
