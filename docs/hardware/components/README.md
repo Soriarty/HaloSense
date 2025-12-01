@@ -12,7 +12,17 @@ Each component has its own subdirectory containing:
 ```
 docs/hardware/components/
 ├── README.md (this file)
-└── hirose-dm3at/            # Micro SD card socket
+├── espressif-esp32-wroom-32e/    # ESP32 MCU module (recommended)
+│   ├── README.md
+│   └── datasheets/
+│       ├── README.md
+│       └── *.pdf (official datasheets)
+├── espressif-esp32-wrover-e/     # ESP32 MCU module with PSRAM
+│   ├── README.md
+│   └── datasheets/
+│       ├── README.md
+│       └── *.pdf (official datasheets)
+└── hirose-dm3at/                 # Micro SD card socket
     ├── README.md
     └── datasheets/
         ├── README.md
@@ -20,6 +30,36 @@ docs/hardware/components/
 ```
 
 ## Component Inventory
+
+### ESP32 Microcontroller Module
+**Espressif ESP32-WROOM-32E** - Wi-Fi + Bluetooth MCU Module (Recommended)
+- **Status:** Documented, **recommended for HaloSense**
+- **Documentation:** [espressif-esp32-wroom-32e/README.md](./espressif-esp32-wroom-32e/README.md)
+- **Datasheets:** [espressif-esp32-wroom-32e/datasheets/README.md](./espressif-esp32-wroom-32e/datasheets/README.md)
+- **Key Features:**
+  - Dual-core Xtensa LX6 @ 240 MHz
+  - 520 KB SRAM, 4/8/16 MB Flash
+  - Wi-Fi 802.11 b/g/n + Bluetooth 4.2 BR/EDR/BLE
+  - **All GPIOs available** including GPIO16/GPIO17
+  - Compatible with Ethernet RMII (LAN8720A PHY)
+  - 38 GPIO pins + peripherals (UART, I2C, SPI, ADC, DAC)
+  - Operating: -40°C to +85°C
+- **Source:** OLIMEX ESP32-POE reference design
+- **HaloSense Use:** Primary MCU for sensor fusion, network connectivity, automation logic
+
+### ESP32 Microcontroller Module (with PSRAM)
+**Espressif ESP32-WROVER-E** - Wi-Fi + Bluetooth MCU Module with 8MB PSRAM
+- **Status:** Documented, **NOT recommended for HaloSense** (GPIO limitations)
+- **Documentation:** [espressif-esp32-wrover-e/README.md](./espressif-esp32-wrover-e/README.md)
+- **Datasheets:** [espressif-esp32-wrover-e/datasheets/README.md](./espressif-esp32-wrover-e/datasheets/README.md)
+- **Key Features:**
+  - Same as WROOM-32E + **8MB PSRAM**
+  - **⚠️ GPIO16 and GPIO17 NOT available** (used internally for PSRAM)
+  - **⚠️ NOT compatible with OLIMEX Ethernet design** (requires GPIO17 for clock)
+  - Higher power consumption (+20mA when using PSRAM)
+  - Slightly larger: 18 × 31.4 mm (vs 18 × 25.5 mm)
+- **Source:** OLIMEX ESP32-POE reference design (alternative variant)
+- **HaloSense Impact:** **Use WROOM-32E instead** - Ethernet support requires GPIO17
 
 ### Micro SD Card Socket
 **Hirose Electric DM3 Series** - DM3AT-SF-PEJM5 (TFC-9P-1.7H)
@@ -52,6 +92,8 @@ Components documented here may have specific GPIO requirements or conflicts that
 
 | Component | Interface | GPIO Pins | Notes |
 |-----------|-----------|-----------|-------|
+| ESP32-WROOM-32E | MCU | All 38 GPIOs available | **Recommended:** All GPIOs functional |
+| ESP32-WROVER-E | MCU | GPIO16/17 **NOT available** | **⚠️ PSRAM uses GPIO16/17 internally** |
 | Micro SD Socket | SDMMC HS2 | GPIO15 (CMD), GPIO14 (CLK), GPIO2 (DATA0) | **Boot strapping conflicts:** GPIO2, GPIO12, GPIO15 |
 
 **Critical GPIO Conflicts:**
@@ -67,6 +109,9 @@ Component power consumption contributes to the overall PoE power budget:
 
 | Component | Voltage | Current (typical) | Power | Status |
 |-----------|---------|-------------------|-------|--------|
+| ESP32-WROOM-32E (Ethernet mode) | 3.3V | ~100 mA | ~330 mW | **Primary MCU** |
+| ESP32-WROOM-32E (Wi-Fi TX) | 3.3V | ~160 mA | ~528 mW | Fallback mode |
+| ESP32-WROVER-E (Ethernet + PSRAM) | 3.3V | ~120 mA | ~396 mW | If PSRAM used |
 | Micro SD Socket (idle) | 3.3V | <1μA | <3.3μW | Negligible |
 | Micro SD Socket (active read) | 3.3V | ~50mA | ~165mW | Temporary peaks only |
 | Micro SD Socket (active write) | 3.3V | ~80mA | ~264mW | Temporary peaks only |
