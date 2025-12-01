@@ -56,7 +56,7 @@ Inspired by devices like the Aqara FP2, but addressing key limitations:
 
 ## Project Status
 
-🚧 **Current Phase:** Phase 1 - Component Selection & Planning (~70% complete)
+🚧 **Current Phase:** Phase 1 - Component Selection & Planning (**100% complete** ✅)
 
 This is a hobby project in active development with a realistic timeline. Check back for updates!
 
@@ -64,18 +64,20 @@ This is a hobby project in active development with a realistic timeline. Check b
 
 | Phase | Milestone | Focus Area | Status | Target |
 |-------|-----------|------------|--------|--------|
-| **Phase 1** | v0.1 | Component Selection & Planning | 🔨 **In Progress** (70%) | 2026 Q1 |
+| **Phase 1** | v0.1 | Component Selection & Planning | ✅ **Complete** (100%) | 2026 Q1 |
 | **Phase 2** | v0.2 | Hardware Design (Schematic, PCB, BOM) | 📋 Planned | 2026 Q3 |
 | **Phase 3** | v0.3 | Firmware Development (ESPHome) | 📋 Planned | 2026 Q4 |
 | **Phase 4** | v0.4 | Enclosure Design (3D Models, FreeCAD) | 📋 Planned | 2027 Q1 |
 | **Phase 5** | v0.5 | Prototype & Testing | 📋 Planned | 2027 Q2 |
 | **Phase 6** | v1.0 | Documentation & Public Release | 📋 Planned | 2027 Q3 |
 
-#### Phase 1 Progress (Current)
+#### Phase 1 Completed ✅
 - ✅ Project setup, Git Flow workflow, Wiki (15+ pages)
-- ✅ mmWave sensor selected (DFRobot C4001) with full documentation
-- ✅ PIR sensor selected (Panasonic EKMC1604111) with full documentation
-- ✅ Light sensor selected (ROHM BH1750FVI) with full documentation
+- ✅ Sensors selected with full documentation (mmWave, PIR, Light)
+- ✅ ESP32 modules documented (WROOM-32E recommended, WROVER-E alternative)
+- ✅ Hardware components documented (Ethernet PHY, PoE, Power ICs, USB)
+- ✅ GPIO allocation finalized (all conflicts resolved)
+- ✅ OLIMEX ESP32-POE reference design analyzed
 
 **📊 Track detailed progress:**
 - **[GitHub Project Board](https://github.com/Soriarty/HaloSense/projects)** - Kanban view with all tasks
@@ -111,15 +113,28 @@ HaloSense/
 │   │   ├── FAQ.md
 │   │   └── ... (15 Wiki pages)
 │   ├── sensors/           # Sensor technical specs ✓
-│   │   ├── SENSORS_INDEX.md
-│   │   └── dfrobot-c4001/
-│   │       ├── C4001_TECHNICAL_GUIDE.md
-│   │       └── datasheets/
-│   ├── GITFLOW.md         # Git Flow workflow ✓
-│   ├── CONVENTIONAL_COMMITS.md  # Commit standards ✓
-│   ├── VERSIONING.md      # Semantic versioning ✓
-│   ├── BRANCH_PROTECTION.md  # Branch rules ✓
-│   ├── GITHUB_WIKI.md     # Wiki strategy ✓
+│   │   ├── README.md      # Sensors overview & GPIO allocation
+│   │   ├── dfrobot-c4001/     # mmWave radar sensor
+│   │   ├── panasonic-ekmc1604111/  # PIR motion sensor
+│   │   └── rohm-bh1750/       # Ambient light sensor
+│   ├── hardware/          # Hardware component documentation ✓
+│   │   ├── components/    # Component datasheets & specs
+│   │   │   ├── espressif-esp32-wroom-32e/  # ESP32 MCU (recommended)
+│   │   │   ├── espressif-esp32-wrover-e/   # ESP32 with PSRAM
+│   │   │   ├── microchip-lan8720a/         # Ethernet PHY
+│   │   │   ├── ti-tps2378/                 # PoE controller
+│   │   │   ├── ti-tps62a02a/               # 3.3V buck converter
+│   │   │   ├── silergy-tx4138/             # 5V buck converter
+│   │   │   ├── tp-tp4054/                  # Battery charger
+│   │   │   └── wch-ch340x/                 # USB-UART bridge
+│   │   ├── power-budget.md     # Power consumption analysis
+│   │   └── ip-rating.md        # IP54 enclosure design
+│   ├── development/       # Developer workflow docs ✓
+│   │   ├── git-flow.md
+│   │   ├── conventional-commits.md
+│   │   ├── versioning.md
+│   │   ├── branch-protection.md
+│   │   └── github-wiki.md
 │   ├── assembly.md        # → Redirects to Wiki
 │   ├── bom.md             # → Redirects to Wiki
 │   └── installation.md    # → Redirects to Wiki
@@ -148,9 +163,19 @@ HaloSense/
 
 **For developers and technical details, see the [docs/](https://github.com/Soriarty/HaloSense/tree/develop/docs) directory:**
 
-- **[DFRobot C4001 mmWave Technical Guide](https://github.com/Soriarty/HaloSense/blob/develop/docs/sensors/dfrobot-c4001/README.md)** - Complete UART protocol, pinouts, ESPHome integration
-- **[Git Flow Workflow](https://github.com/Soriarty/HaloSense/blob/develop/docs/development/git-flow.md)** - Development workflow
-- **[Conventional Commits](https://github.com/Soriarty/HaloSense/blob/develop/docs/development/conventional-commits.md)** - Commit message format
+**Sensor Documentation:**
+- **[Sensors Overview & GPIO Allocation](https://github.com/Soriarty/HaloSense/blob/develop/docs/sensors/README.md)** - Complete GPIO pin assignments
+- **[DFRobot C4001 mmWave Radar](https://github.com/Soriarty/HaloSense/blob/develop/docs/sensors/dfrobot-c4001/README.md)** - UART protocol, ESPHome integration
+- **[Panasonic EKMC1604111 PIR Sensor](https://github.com/Soriarty/HaloSense/blob/develop/docs/sensors/panasonic-ekmc1604111/README.md)** - Motion detection specs
+- **[ROHM BH1750FVI Light Sensor](https://github.com/Soriarty/HaloSense/blob/develop/docs/sensors/rohm-bh1750/README.md)** - I2C ambient light sensor
+
+**Hardware Components:**
+- **[ESP32-WROOM-32E Module](https://github.com/Soriarty/HaloSense/blob/develop/docs/hardware/components/espressif-esp32-wroom-32e/README.md)** - Main MCU (recommended)
+- **[Hardware Components Overview](https://github.com/Soriarty/HaloSense/blob/develop/docs/hardware/components/README.md)** - All ICs, GPIO planning, power budget
+
+**Development Workflow:**
+- **[Git Flow Workflow](https://github.com/Soriarty/HaloSense/blob/develop/docs/development/git-flow.md)** - Branching strategy
+- **[Conventional Commits](https://github.com/Soriarty/HaloSense/blob/develop/docs/development/conventional-commits.md)** - Commit standards
 - **[Contributing Guidelines](https://github.com/Soriarty/HaloSense/blob/develop/CONTRIBUTING.md)** - How to contribute
 
 ### Prerequisites
@@ -176,28 +201,49 @@ HaloSense/
 - **WiFi:** 802.11 b/g/n (2.4GHz)
 - **Protocol:** MQTT, Home Assistant API
 
-### Sensors
-- **mmWave:** [DFRobot C4001 (SEN0609)](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/dfrobot-c4001/README.md)
-  - 24GHz FMCW radar, UART interface
+### Sensors & GPIO Allocation
+- **mmWave Radar:** [DFRobot C4001 (SEN0609)](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/dfrobot-c4001/README.md)
+  - 24GHz FMCW radar, UART interface (115200 baud)
+  - **GPIO:** GPIO16 (RX), GPIO9 (TX) - Software UART
   - Presence: 16m, Motion: 25m, 100° × 40° beam
-- **PIR:** [Panasonic EKMC1604111](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/panasonic-ekmc1604111/README.md) (wall installation type)
+  - ESPHome compatible, ASCII command protocol
+
+- **PIR Motion:** [Panasonic EKMC1604111](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/panasonic-ekmc1604111/README.md)
   - Three-step lens (12m/6m/3m zones), Digital output
-  - Coverage: 105° × 40° (asymmetric vertical), 68 detection zones
+  - **GPIO:** GPI35 (input-only, 33kΩ pull-down resistor)
+  - Coverage: 105° × 40° (asymmetric vertical), 68 beams
   - Response: <0.1s instant trigger, 170μA low power
   - Mainboard-integrated (through-hole mounting)
+
 - **Light Sensor:** [ROHM BH1750FVI](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/rohm-bh1750/README.md)
   - Digital 16-bit I2C ambient light sensor
+  - **GPIO:** GPIO32 (SDA), GPIO33 (SCL) - Hardware I2C
   - Range: 1-65,535 lx (extendable to 0.11-100,000 lx)
-  - Resolution: 0.5-4 lx (configurable)
-  - I2C interface (address 0x23 or 0x5C)
-  - Supply: 2.4-3.6V (3.3V operation)
+  - Resolution: 0.5-4 lx, Address: 0x23 or 0x5C
   - Power: 120μA active, 0.01μA standby (0.4mW typical)
-  - ESPHome native support
-  - JLCPCB available (C78960, Extended Parts)
+  - ESPHome native support, JLCPCB available (C78960)
+
+**All GPIO conflicts resolved** - No interference with Ethernet RMII or boot strapping pins.
+
+### Hardware Components
+- **MCU:** [ESP32-WROOM-32E](https://github.com/Soriarty/HaloSense/blob/develop/docs/hardware/components/espressif-esp32-wroom-32e/README.md)
+  - Dual-core Xtensa LX6 @ 240 MHz, 520KB SRAM, 4/8/16MB Flash
+  - Wi-Fi 802.11 b/g/n + Bluetooth 4.2 BR/EDR/BLE
+  - All 38 GPIOs available (including GPIO16/GPIO17)
+
+- **Ethernet PHY:** Microchip LAN8720A (10/100 Mbps RMII)
+- **PoE Controller:** TI TPS2378 (IEEE 802.3af/at, up to 25.5W)
+- **Power ICs:**
+  - Silergy TX4138 (48V → 5V buck converter)
+  - TI TPS62A02A (5V → 3.3V buck converter for LAN PHY)
+  - TP4054 (Li-Po battery charger, optional backup)
+- **USB Bridge:** WCH CH340X (USB-to-UART for programming)
+
+See [Hardware Components Documentation](https://github.com/Soriarty/HaloSense/blob/develop/docs/hardware/components/README.md) for complete specifications.
 
 ### Physical
-- **Form Factor:** Circular PCB
-- **Diameter:** TBD
+- **Form Factor:** Circular PCB (based on OLIMEX ESP32-POE reference)
+- **Diameter:** TBD (Phase 2 design)
 - **Mounting:** Wall, ceiling, or desk options
 
 ---

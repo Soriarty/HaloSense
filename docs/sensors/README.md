@@ -5,27 +5,27 @@ This directory contains detailed technical documentation for all sensors used in
 ## Directory Structure
 
 Each sensor has its own subdirectory containing:
-- **<SENSOR>_TECHNICAL_GUIDE.md** - Main technical documentation
+- **README.md** - Main technical documentation
 - **datasheets/** - Official PDF datasheets and manufacturer documentation
-  - **DATASHEETS_INDEX.md** - Index of available datasheets
+  - **README.md** - Index of available datasheets
 
 ```
 docs/sensors/
-├── README.md (this file)
+├── README.md (this file - GPIO allocation & overview)
 ├── dfrobot-c4001/          # mmWave radar sensor
-│   ├── README.md
+│   ├── README.md           # Complete UART protocol, ESPHome integration
 │   └── datasheets/
-│       ├── DATASHEETS_INDEX.md
+│       ├── README.md
 │       └── *.pdf (official datasheets)
 ├── panasonic-ekmc1604111/  # PIR motion sensor
-│   ├── EKMC1604111_TECHNICAL_GUIDE.md
+│   ├── README.md           # Digital output specs, wiring
 │   └── datasheets/
-│       ├── DATASHEETS_INDEX.md
+│       ├── README.md
 │       └── *.pdf (official datasheets)
 └── rohm-bh1750/            # Ambient light sensor
-    ├── BH1750_TECHNICAL_GUIDE.md
+    ├── README.md           # I2C protocol, ESPHome config
     └── datasheets/
-        ├── DATASHEETS_INDEX.md
+        ├── README.md
         └── *.pdf (official datasheets)
 ```
 
@@ -89,20 +89,29 @@ Each sensor documentation includes:
 - **Library support** - ESPHome integration and Arduino libraries
 - **Integration notes** - HaloSense-specific considerations
 
-## GPIO Allocation Planning
+## GPIO Allocation (Finalized)
 
-| Sensor | Interface | GPIO Pins | Notes |
-|--------|-----------|-----------|-------|
-| DFRobot C4001 | UART | TX, RX (+ optional OUT) | Requires 1 hardware UART port (UART1 or UART2) |
-| Panasonic EKMC1604111 | Digital GPIO | 1 GPIO input | **External pull-down required:** 33kΩ (±5%, 0805 SMD) to GND |
-| ROHM BH1750FVI | I2C | SDA, SCL | Address: 0x23 (ADDR='L') or 0x5C (ADDR='H'), shared I2C bus |
+**HaloSense ESP32-WROOM-32E GPIO Assignment:**
 
-**ESP32 Available Interfaces:**
-- **UART0:** Used for programming/debug console (reserved)
-- **UART1:** Available (recommended for C4001 mmWave)
-- **UART2:** Available (backup)
-- **GPIO:** Multiple available for digital inputs (PIR uses 1 GPIO)
-- **I2C:** Multiple devices can share SDA/SCL pins (recommended for light sensor)
+| Sensor/Function | Interface | GPIO Pins | Configuration |
+|-----------------|-----------|-----------|---------------|
+| **DFRobot C4001** | Software UART | **GPIO16 (RX), GPIO9 (TX)** | 115200 baud, avoids GPIO17 Ethernet clock conflict |
+| **Panasonic EKMC1604111** | Digital Input | **GPI35** | Input-only GPIO, **33kΩ pull-down resistor** (0805 SMD) to GND |
+| **ROHM BH1750FVI** | Hardware I2C | **GPIO32 (SDA), GPIO33 (SCL)** | Address: 0x23, no conflicts with Ethernet |
+| **Ethernet (LAN8720A)** | RMII | GPIO0, 17, 18, 19, 21, 22, 23, 25, 26, 27 | Primary connectivity |
+
+**Resolved Conflicts:**
+- ✅ **I2C vs Ethernet:** Default I2C pins (GPIO21/GPIO22) conflict with Ethernet RMII → Using GPIO32/GPIO33
+- ✅ **UART vs Ethernet Clock:** Hardware UART2 (GPIO16/GPIO17) conflicts with EMAC_CLK_OUT_180 → Using software UART on GPIO16/GPIO9
+- ✅ **Boot Strapping:** No conflicts - sensors avoid GPIO0, GPIO2, GPIO5, GPIO12, GPIO15
+
+**ESP32 Interface Usage:**
+- **UART0:** Programming/debug console (GPIO1/GPIO3) - Reserved
+- **UART (Software):** C4001 mmWave on GPIO16/GPIO9
+- **I2C (Hardware):** BH1750 on GPIO32/GPIO33
+- **GPIO (Digital Input):** EKMC1604111 PIR on GPI35
+
+See complete GPIO planning: [Hardware Components Documentation](../hardware/components/README.md)
 
 ## Power Budget Considerations
 
@@ -155,4 +164,4 @@ When adding a new sensor:
 
 ---
 
-**Last Updated:** 2025-11-29
+**Last Updated:** 2025-12-01
