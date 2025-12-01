@@ -168,21 +168,22 @@ See [ESP32-WROOM-32E GPIO pinout](../espressif-esp32-wroom-32e/README.md#complet
 
 | Function | WROOM-32E | WROVER-E Alternative |
 |----------|-----------|---------------------|
-| Ethernet Clock | GPIO17 (EMAC_CLK_OUT_180) | ⚠️ Use GPIO16 (if available) or external oscillator |
-| UART2 (mmWave) | GPIO16 (RX), GPIO17 (TX) | Use GPIO32 (RX), GPIO33 (TX) |
-| I2C (sensors) | GPIO16 (SCL), GPIO17 (SDA) | Use GPIO4 (SDA), GPIO5 (SCL) |
+| **GPIO16/GPIO17** | Available (UART/Ethernet clock) | ❌ NOT CONNECTED (PSRAM internal use) |
+| Ethernet Clock | GPIO17 (EMAC_CLK_OUT_180) | ⚠️ Use GPIO16 or external oscillator |
+| UART (mmWave) | GPIO16 (RX), GPIO9 (TX) | Use alternative GPIO pair |
+| I2C (sensors) | GPIO32 (SDA), GPIO33 (SCL) | **Same (GPIO32/GPIO33)** ✅ |
 
 **Recommended HaloSense GPIO Allocation (WROVER-E):**
 
 | Sensor/Function | GPIOs | Interface | Notes |
 |-----------------|-------|-----------|-------|
 | **Ethernet (LAN8720A)** | Modified RMII | RMII | **⚠️ Requires GPIO17 workaround!** |
-| **mmWave (DFRobot C4001)** | GPIO32 (RX), GPIO33 (TX) | UART | Reassigned from GPIO16/17 |
-| **PIR (EKMC1604111)** | GPIO35 | Digital Input | With external 33kΩ pull-down |
-| **Light (BH1750)** | GPIO4 (SDA), GPIO5 (SCL) | I2C | Same as WROOM-32E |
-| **SD Card** | Omit | — | Boot strapping conflicts |
+| **mmWave (DFRobot C4001)** | Alternative UART pins | Software UART | GPIO16/17 not available |
+| **PIR (EKMC1604111)** | GPI35 | Digital Input | Input-only GPIO, 33kΩ pull-down |
+| **Light (BH1750FVI)** | GPIO32 (SDA), GPIO33 (SCL) | Hardware I2C | **Same as WROOM-32E** ✅ |
+| **SD Card** | Omitted | — | Avoids boot strapping conflicts |
 
-**⚠️ Warning:** This allocation is **NOT directly compatible** with OLIMEX ESP32-POE design. Custom PCB required.
+**⚠️ Warning:** WROVER-E is **NOT recommended for HaloSense** due to GPIO16/GPIO17 limitations. Use ESP32-WROOM-32E instead.
 
 ## PSRAM Usage in ESPHome/ESP-IDF
 
@@ -294,19 +295,19 @@ wifi:
 # Sensor Interfaces (adjusted for missing GPIO16/17)
 uart:
   - id: uart_mmwave
-    tx_pin: GPIO33      # Changed from GPIO17 (not available on WROVER)
-    rx_pin: GPIO32      # Changed from GPIO16 (not available on WROVER)
+    tx_pin: GPIO5       # Alternative pins (GPIO16/17 not available on WROVER)
+    rx_pin: GPIO4
     baud_rate: 115200
 
 i2c:
-  sda: GPIO4            # Same as WROOM-32E
-  scl: GPIO5            # Same as WROOM-32E
+  sda: GPIO32           # BH1750FVI light sensor (same as WROOM-32E)
+  scl: GPIO33           # Same as WROOM-32E
   scan: true
 
 binary_sensor:
   - platform: gpio
     pin:
-      number: GPIO35    # PIR sensor (changed from GPIO32)
+      number: GPIO35    # Panasonic EKMC1604111 PIR sensor
       mode: INPUT
     name: "PIR Motion"
     device_class: motion

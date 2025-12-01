@@ -151,12 +151,11 @@ The ESP32-WROOM-32E module serves as the main microcontroller for the HaloSense 
 - **GPIO17** - EMAC_CLK_OUT_180 (50MHz clock output, 180° phase shift)
 
 #### I2C Interface (for sensors)
-**Default I2C0 (Wire) pins:**
-- **GPIO21** - SDA (Serial Data) - **⚠️ Conflicts with EMAC_TX_EN!**
-- **GPIO22** - SCL (Serial Clock) - **⚠️ Conflicts with EMAC_TXD1!**
+**HaloSense I2C Configuration (BH1750 Light Sensor):**
+- **GPIO32** - SDA (Serial Data)
+- **GPIO33** - SCL (Serial Clock)
 
-**Alternative I2C pins** (software-configurable):
-- Any unused GPIO can be assigned as I2C via ESPHome/ESP-IDF
+**Note:** Default I2C pins GPIO21/GPIO22 conflict with Ethernet RMII (EMAC_TX_EN/EMAC_TXD1), so GPIO32/GPIO33 are used instead. These pins are available on both WROOM-32E and WROVER-E modules.
 
 #### UART Interfaces
 **UART0** (Programming/Console):
@@ -209,50 +208,48 @@ The ESP32-WROOM-32E module serves as the main microcontroller for the HaloSense 
 - GPIO27 - EMAC_RX_DV
 - GPIO17 - EMAC_CLK_OUT_180 (50MHz clock to PHY)
 
-#### I2C (Sensors) - **⚠️ Conflict with Ethernet!**
-OLIMEX uses GPIO16 (I2C-SCL) and GPIO17 (EMAC_CLK_OUT_180) simultaneously. This creates a conflict that must be resolved in HaloSense design.
+#### I2C (Sensors) - **GPIO32/GPIO33**
+OLIMEX uses GPIO16 (I2C-SCL) in their extension headers, but GPIO21/GPIO22 (default I2C) conflict with Ethernet RMII.
 
-**Possible solutions:**
-1. Use alternative I2C pins (e.g., GPIO4, GPIO5) - **Recommended**
-2. Software I2C (bitbang) on any available GPIO
-3. Omit Ethernet and free up GPIO21/GPIO22 for hardware I2C
+**HaloSense Solution:**
+- **GPIO32** - I2C SDA (BH1750 Light Sensor)
+- **GPIO33** - I2C SCL (BH1750 Light Sensor)
+- No conflicts with Ethernet, boot strapping pins, or other peripherals
 
 #### Available for Sensors (HaloSense Custom Allocation)
 
 **For mmWave Sensor (UART):**
-- Recommended: UART2 (GPIO16/GPIO17 if Ethernet clock conflicts resolved)
-- Alternative: Any available GPIO pair with software UART
+- **GPIO16** (RX), **GPIO9** (TX) - Software UART (hardware UART2 conflicts with Ethernet clock)
 
 **For PIR Sensor (Digital Input):**
-- Any available GPIO with pull-down resistor
+- **GPI35** - Input-only GPIO with external 33kΩ pull-down resistor
 
 **For Light Sensor (I2C):**
-- Recommended: GPIO4 (SDA), GPIO5 (SCL) - if not used by SD card or SPI
-- Conflicts to check: GPIO4 used by HS2_DATA1 (SD card 4-bit mode)
+- **GPIO32** (SDA), **GPIO33** (SCL) - Hardware I2C for BH1750FVI
 
 ### HaloSense GPIO Conflict Resolution
 
-**Critical Conflicts:**
-1. **I2C vs Ethernet:** GPIO21 (SDA/EMAC_TX_EN), GPIO22 (SCL/EMAC_TXD1)
-   - **Resolution:** Use alternative GPIO for I2C (e.g., GPIO4/GPIO5 or GPIO32/GPIO33)
+**Resolved Conflicts:**
+1. **I2C vs Ethernet:** Default I2C pins (GPIO21/GPIO22) conflict with Ethernet RMII
+   - **✅ Resolution:** Use GPIO32 (SDA) and GPIO33 (SCL) for I2C sensors
 
-2. **SD Card vs Strapping Pins:** GPIO2, GPIO12, GPIO15
-   - **Resolution:** Add proper pull-up/pull-down resistors for boot compatibility
+2. **UART2 vs Ethernet Clock:** Hardware UART2 (GPIO16/GPIO17) conflicts with EMAC_CLK_OUT_180
+   - **✅ Resolution:** Use software UART on GPIO16 (RX) and GPIO9 (TX) for mmWave sensor
 
-3. **UART2 vs Ethernet Clock:** GPIO16/GPIO17 (U2RXD/U2TXD vs EMAC_CLK_OUT)
-   - **Resolution:** Use different UART pins for sensors or use EMAC_CLK_OUT on GPIO16 only
+**Avoided Conflicts:**
+- **SD Card:** Omitted to avoid boot strapping pin conflicts (GPIO2, GPIO12, GPIO15)
 
 **Recommended GPIO Allocation for HaloSense:**
 
 | Sensor/Function | GPIOs | Interface | Notes |
 |-----------------|-------|-----------|-------|
-| **Ethernet (LAN8720A)** | GPIO0, 17, 19, 21, 22, 25, 26, 27 | RMII | **Primary connectivity** |
-| **mmWave (DFRobot C4001)** | GPIO16 (RX), GPIO9 (TX) | UART1 | Avoid GPIO17 conflict |
-| **PIR (EKMC1604111)** | GPIO32 | Digital Input | With external 33kΩ pull-down |
-| **Light (BH1750)** | GPIO4 (SDA), GPIO5 (SCL) | I2C | Avoid GPIO21/22 conflict |
-| **SD Card (Optional)** | Omit or SPI mode | — | Boot strapping conflicts |
+| **Ethernet (LAN8720A)** | GPIO0, 17, 18, 19, 21, 22, 23, 25, 26, 27 | RMII | **Primary connectivity** |
+| **mmWave (DFRobot C4001)** | GPIO16 (RX), GPIO9 (TX) | Software UART | Avoids GPIO17 Ethernet clock |
+| **PIR (EKMC1604111)** | GPI35 | Digital Input | Input-only GPIO, 33kΩ pull-down |
+| **Light (BH1750FVI)** | GPIO32 (SDA), GPIO33 (SCL) | Hardware I2C | No conflicts with Ethernet |
+| **SD Card** | Omitted | — | Avoids boot strapping conflicts |
 
-**Note:** Final GPIO allocation TBD in Phase 2 hardware design.
+**Note:** GPIO allocation finalized based on OLIMEX ESP32-POE schematic analysis.
 
 ## Power Budget Impact
 
@@ -394,22 +391,22 @@ wifi:
   # Use Ethernet as primary, WiFi as fallback
   enable_on_boot: false
 
-# Example Sensor Interfaces
+# Sensor Interfaces
 uart:
   - id: uart_mmwave
-    tx_pin: GPIO9       # Adjust based on final GPIO allocation
-    rx_pin: GPIO16      # Adjust based on final GPIO allocation
+    tx_pin: GPIO9       # DFRobot C4001 mmWave sensor
+    rx_pin: GPIO16
     baud_rate: 115200
 
 i2c:
-  sda: GPIO4            # Alternative I2C (avoid GPIO21/22 conflict)
-  scl: GPIO5
+  sda: GPIO32           # BH1750FVI light sensor
+  scl: GPIO33
   scan: true
 
 binary_sensor:
   - platform: gpio
     pin:
-      number: GPIO32    # PIR sensor
+      number: GPIO35    # Panasonic EKMC1604111 PIR sensor
       mode: INPUT
     name: "PIR Motion"
     device_class: motion

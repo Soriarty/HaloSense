@@ -88,20 +88,29 @@ Each component documentation includes:
 
 ### GPIO Planning
 
-Components documented here may have specific GPIO requirements or conflicts that must be resolved during Phase 2 hardware design:
+**HaloSense GPIO Allocation (ESP32-WROOM-32E):**
 
 | Component | Interface | GPIO Pins | Notes |
 |-----------|-----------|-----------|-------|
-| ESP32-WROOM-32E | MCU | All 38 GPIOs available | **Recommended:** All GPIOs functional |
-| ESP32-WROVER-E | MCU | GPIO16/17 **NOT available** | **⚠️ PSRAM uses GPIO16/17 internally** |
-| Micro SD Socket | SDMMC HS2 | GPIO15 (CMD), GPIO14 (CLK), GPIO2 (DATA0) | **Boot strapping conflicts:** GPIO2, GPIO12, GPIO15 |
+| **Ethernet (LAN8720A)** | RMII | GPIO0, 17, 18, 19, 21, 22, 23, 25, 26, 27 | Primary connectivity |
+| **mmWave (DFRobot C4001)** | Software UART | GPIO16 (RX), GPIO9 (TX) | 115200 baud |
+| **PIR (Panasonic EKMC1604111)** | Digital Input | GPI35 | Input-only, 33kΩ pull-down |
+| **Light (ROHM BH1750FVI)** | Hardware I2C | GPIO32 (SDA), GPIO33 (SCL) | No conflicts |
+| **Micro SD Socket** | — | Omitted | Avoided boot strapping conflicts |
 
-**Critical GPIO Conflicts:**
-- **GPIO15 (HS2_CMD):** Must be HIGH at boot (boot strapping pin)
-- **GPIO2 (HS2_DATA0):** Must be LOW/floating at boot (boot strapping pin)
-- **GPIO12 (HS2_DATA2):** Flash voltage select (boot strapping pin)
+**Module Comparison:**
 
-See complete GPIO allocation table: [../../sensors/README.md](../../sensors/README.md)
+| Module | GPIO Availability | HaloSense Compatibility |
+|--------|-------------------|------------------------|
+| ESP32-WROOM-32E | All 38 GPIOs available | ✅ **Recommended** - All sensors compatible |
+| ESP32-WROVER-E | GPIO16/17 **NOT available** | ⚠️ Not recommended - Ethernet clock conflict |
+
+**Resolved Conflicts:**
+- ✅ **I2C vs Ethernet:** Using GPIO32/GPIO33 instead of default GPIO21/GPIO22
+- ✅ **UART vs Ethernet Clock:** Using software UART on GPIO16/GPIO9 instead of GPIO16/GPIO17
+- ✅ **SD Card Boot Strapping:** Omitted to avoid GPIO2, GPIO12, GPIO15 conflicts
+
+See sensor-specific documentation: [../../sensors/README.md](../../sensors/README.md)
 
 ### Power Budget Impact
 
