@@ -12,21 +12,15 @@ Each component has its own subdirectory containing:
 ```
 docs/hardware/components/
 ├── README.md (this file)
-├── espressif-esp32-wroom-32e/    # ESP32 MCU module (recommended)
-│   ├── README.md
-│   └── datasheets/
-│       ├── README.md
-│       └── *.pdf (official datasheets)
-├── espressif-esp32-wrover-e/     # ESP32 MCU module with PSRAM
-│   ├── README.md
-│   └── datasheets/
-│       ├── README.md
-│       └── *.pdf (official datasheets)
-└── hirose-dm3at/                 # Micro SD card socket
-    ├── README.md
-    └── datasheets/
-        ├── README.md
-        └── *.pdf (official datasheets)
+├── espressif-esp32-wroom-32e/    # ESP32 MCU (recommended)
+├── espressif-esp32-wrover-e/     # ESP32 MCU with PSRAM
+├── microchip-lan8720a/           # Ethernet PHY
+├── ti-tps2378/                   # PoE controller
+├── ti-tps62a02a/                 # 3.3V buck converter
+├── silergy-tx4138/               # 5V buck converter
+├── tp-tp4054/                    # Li-Po battery charger
+├── wch-ch340x/                   # USB-to-UART bridge
+└── hirose-dm3at/                 # Micro SD socket (omitted)
 ```
 
 ## Component Inventory
@@ -61,18 +55,47 @@ docs/hardware/components/
 - **Source:** OLIMEX ESP32-POE reference design (alternative variant)
 - **HaloSense Impact:** **Use WROOM-32E instead** - Ethernet support requires GPIO17
 
-### Micro SD Card Socket
-**Hirose Electric DM3 Series** - DM3AT-SF-PEJM5 (TFC-9P-1.7H)
-- **Status:** Documented (implementation decision pending Phase 2)
-- **Documentation:** [hirose-dm3at/README.md](./hirose-dm3at/README.md)
-- **Datasheets:** [hirose-dm3at/datasheets/README.md](./hirose-dm3at/datasheets/README.md)
+### Ethernet PHY
+**Microchip LAN8720A** - 10/100 Mbps Ethernet PHY with RMII Interface
+- **Status:** Placeholder - Documentation TBD
+- **Documentation:** [microchip-lan8720a/README.md](./microchip-lan8720a/README.md)
 - **Key Features:**
-  - Push-Push mechanism with ejection
-  - Height: 1.7mm (low profile)
-  - ESP32 SDMMC HS2 interface (GPIO15/14/2 for CMD/CLK/DATA0)
-  - 10,000 insertion cycles rated
-  - Optional local data logging capability
-  - **Critical:** Boot strapping pin conflicts (GPIO2, GPIO12, GPIO15)
+  - 10/100 BASE-TX Ethernet PHY, RMII interface
+  - ~60 mA @ 3.3V, QFN-24 package
+- **Source:** OLIMEX ESP32-POE reference design
+
+### PoE Controller
+**Texas Instruments TPS2378** - IEEE 802.3af/at PoE-PD Controller
+- **Status:** Placeholder - Documentation TBD
+- **Documentation:** [ti-tps2378/README.md](./ti-tps2378/README.md)
+- **Key Features:**
+  - IEEE 802.3af/at compliant, up to 25.5W (Class 4)
+  - HSOIC-8 PowerPAD package
+- **Source:** OLIMEX ESP32-POE reference design
+
+### Power Management ICs
+**TI TPS62A02A** - 3.3V Buck Converter for LAN PHY
+- **Status:** Placeholder - Documentation TBD
+- **Documentation:** [ti-tps62a02a/README.md](./ti-tps62a02a/README.md)
+
+**Silergy TX4138** - 5V Buck Converter from PoE
+- **Status:** Placeholder - Documentation TBD
+- **Documentation:** [silergy-tx4138/README.md](./silergy-tx4138/README.md)
+
+**TP4054** - Li-Po Battery Charger IC
+- **Status:** Placeholder - Documentation TBD
+- **Documentation:** [tp-tp4054/README.md](./tp-tp4054/README.md)
+
+### USB-to-UART Bridge
+**WCH CH340X** - USB Programming Interface
+- **Status:** Placeholder - Documentation TBD
+- **Documentation:** [wch-ch340x/README.md](./wch-ch340x/README.md)
+
+### Micro SD Card Socket
+**Hirose Electric DM3AT** - Micro SD Socket (OMITTED)
+- **Status:** Documented (omitted from HaloSense design)
+- **Documentation:** [hirose-dm3at/README.md](./hirose-dm3at/README.md)
+- **Reason:** Boot strapping pin conflicts
 - **Source:** OLIMEX ESP32-POE reference design
 
 ## Documentation Structure
