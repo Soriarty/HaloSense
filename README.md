@@ -75,7 +75,7 @@ This is a hobby project in active development with a realistic timeline. Check b
 - ✅ Project setup, Git Flow workflow, Wiki (15+ pages)
 - ✅ mmWave sensor selected (DFRobot C4001) with full documentation
 - ✅ PIR sensor selected (Panasonic EKMC1604111) with full documentation
-- 🔨 Light sensor selection in progress
+- ✅ Light sensor selected (ROHM BH1750FVI) with full documentation
 
 **📊 Track detailed progress:**
 - **[GitHub Project Board](https://github.com/Soriarty/HaloSense/projects)** - Kanban view with all tasks
@@ -183,7 +183,15 @@ HaloSense/
   - Coverage: 105° × 40° (asymmetric vertical), 68 detection zones
   - Response: <0.1s instant trigger, 170μA low power
   - Mainboard-integrated (through-hole mounting)
-- **Light Sensor:** TBD (model selection in progress)
+- **Light Sensor:** [ROHM BH1750FVI](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/rohm-bh1750/README.md)
+  - Digital 16-bit I2C ambient light sensor
+  - Range: 1-65,535 lx (extendable to 0.11-100,000 lx)
+  - Resolution: 0.5-4 lx (configurable)
+  - I2C interface (address 0x23 or 0x5C)
+  - Supply: 2.4-3.6V (3.3V operation)
+  - Power: 120μA active, 0.01μA standby (0.4mW typical)
+  - ESPHome native support
+  - JLCPCB available (C78960, Extended Parts)
 
 ### Physical
 - **Form Factor:** Circular PCB
