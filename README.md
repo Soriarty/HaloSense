@@ -112,13 +112,11 @@ HaloSense/
 │   │   ├── Assembly-Guide.md
 │   │   ├── FAQ.md
 │   │   └── ... (15 Wiki pages)
-│   ├── sensors/           # Sensor technical specs ✓
-│   │   ├── README.md      # Sensors overview & GPIO allocation
-│   │   ├── dfrobot-c4001/     # mmWave radar sensor
-│   │   ├── panasonic-ekmc1604111/  # PIR motion sensor
-│   │   └── rohm-bh1750/       # Ambient light sensor
 │   ├── hardware/          # Hardware component documentation ✓
-│   │   ├── components/    # Component datasheets & specs
+│   │   ├── components/    # All hardware components (sensors + ICs)
+│   │   │   ├── dfrobot-c4001/              # mmWave radar sensor
+│   │   │   ├── panasonic-ekmc1604111/      # PIR motion sensor
+│   │   │   ├── rohm-bh1750/                # Ambient light sensor
 │   │   │   ├── espressif-esp32-wroom-32e/  # ESP32 MCU (recommended)
 │   │   │   ├── espressif-esp32-wrover-e/   # ESP32 with PSRAM
 │   │   │   ├── microchip-lan8720a/         # Ethernet PHY
@@ -163,15 +161,12 @@ HaloSense/
 
 **For developers and technical details, see the [docs/](https://github.com/Soriarty/HaloSense/tree/develop/docs) directory:**
 
-**Sensor Documentation:**
-- **[Sensors Overview & GPIO Allocation](https://github.com/Soriarty/HaloSense/blob/develop/docs/sensors/README.md)** - Complete GPIO pin assignments
-- **[DFRobot C4001 mmWave Radar](https://github.com/Soriarty/HaloSense/blob/develop/docs/sensors/dfrobot-c4001/README.md)** - UART protocol, ESPHome integration
-- **[Panasonic EKMC1604111 PIR Sensor](https://github.com/Soriarty/HaloSense/blob/develop/docs/sensors/panasonic-ekmc1604111/README.md)** - Motion detection specs
-- **[ROHM BH1750FVI Light Sensor](https://github.com/Soriarty/HaloSense/blob/develop/docs/sensors/rohm-bh1750/README.md)** - I2C ambient light sensor
-
-**Hardware Components:**
-- **[ESP32-WROOM-32E Module](https://github.com/Soriarty/HaloSense/blob/develop/docs/hardware/components/espressif-esp32-wroom-32e/README.md)** - Main MCU (recommended)
-- **[Hardware Components Overview](https://github.com/Soriarty/HaloSense/blob/develop/docs/hardware/components/README.md)** - All ICs, GPIO planning, power budget
+**Hardware Components (Sensors + ICs):**
+- **[All Components Overview & GPIO Allocation](https://github.com/Soriarty/HaloSense/blob/develop/docs/hardware/components/README.md)** - Complete documentation, power budget
+- **[DFRobot C4001 mmWave Radar](https://github.com/Soriarty/HaloSense/blob/develop/docs/hardware/components/dfrobot-c4001/README.md)** - UART protocol, ESPHome integration
+- **[Panasonic EKMC1604111 PIR Sensor](https://github.com/Soriarty/HaloSense/blob/develop/docs/hardware/components/panasonic-ekmc1604111/README.md)** - Motion detection specs
+- **[ROHM BH1750FVI Light Sensor](https://github.com/Soriarty/HaloSense/blob/develop/docs/hardware/components/rohm-bh1750/README.md)** - I2C ambient light sensor
+- **[ESP32-WROOM-32E Module](https://github.com/Soriarty/HaloSense/blob/develop/docs/hardware/components/espressif-esp32-wroom-32e/README.md)** - Main MCU
 
 **Development Workflow:**
 - **[Git Flow Workflow](https://github.com/Soriarty/HaloSense/blob/develop/docs/development/git-flow.md)** - Branching strategy
@@ -202,20 +197,20 @@ HaloSense/
 - **Protocol:** MQTT, Home Assistant API
 
 ### Sensors & GPIO Allocation
-- **mmWave Radar:** [DFRobot C4001 (SEN0609)](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/dfrobot-c4001/README.md)
+- **mmWave Radar:** [DFRobot C4001 (SEN0609)](https://github.com/Soriarty/HaloSense/blob/develop/docs/hardware/components/dfrobot-c4001/README.md)
   - 24GHz FMCW radar, UART interface (115200 baud)
   - **GPIO:** GPIO16 (RX), GPIO9 (TX) - Software UART
   - Presence: 16m, Motion: 25m, 100° × 40° beam
   - ESPHome compatible, ASCII command protocol
 
-- **PIR Motion:** [Panasonic EKMC1604111](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/panasonic-ekmc1604111/README.md)
+- **PIR Motion:** [Panasonic EKMC1604111](https://github.com/Soriarty/HaloSense/blob/develop/docs/hardware/components/panasonic-ekmc1604111/README.md)
   - Three-step lens (12m/6m/3m zones), Digital output
   - **GPIO:** GPI35 (input-only, 33kΩ pull-down resistor)
   - Coverage: 105° × 40° (asymmetric vertical), 68 beams
   - Response: <0.1s instant trigger, 170μA low power
   - Mainboard-integrated (through-hole mounting)
 
-- **Light Sensor:** [ROHM BH1750FVI](https://github.com/Soriarty/HaloSense/blob/main/docs/sensors/rohm-bh1750/README.md)
+- **Light Sensor:** [ROHM BH1750FVI](https://github.com/Soriarty/HaloSense/blob/develop/docs/hardware/components/rohm-bh1750/README.md)
   - Digital 16-bit I2C ambient light sensor
   - **GPIO:** GPIO32 (SDA), GPIO33 (SCL) - Hardware I2C
   - Range: 1-65,535 lx (extendable to 0.11-100,000 lx)

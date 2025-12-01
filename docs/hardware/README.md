@@ -6,7 +6,15 @@ This directory contains hardware design specifications and analysis for the Halo
 
 ### Hardware Components
 
-**[Components Overview & GPIO Planning](components/README.md)** - Complete component documentation
+**[Components Overview & GPIO Planning](components/README.md)** - All hardware components (sensors + ICs)
+
+**Sensors:**
+- **[DFRobot C4001](components/dfrobot-c4001/README.md)** - mmWave Radar Sensor
+  - 24GHz FMCW, UART (GPIO16/GPIO9), Presence/Motion detection
+- **[Panasonic EKMC1604111](components/panasonic-ekmc1604111/README.md)** - PIR Motion Sensor
+  - Three-step lens, Digital output (GPI35), <0.1s response
+- **[ROHM BH1750FVI](components/rohm-bh1750/README.md)** - Ambient Light Sensor
+  - I2C (GPIO32/GPIO33), 16-bit resolution, ESPHome native support
 
 **MCU & Wireless:**
 - **[ESP32-WROOM-32E](components/espressif-esp32-wroom-32e/README.md)** - Main MCU (recommended)

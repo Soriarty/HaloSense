@@ -12,6 +12,9 @@ Each component has its own subdirectory containing:
 ```
 docs/hardware/components/
 ├── README.md (this file)
+├── dfrobot-c4001/                # mmWave radar sensor
+├── panasonic-ekmc1604111/        # PIR motion sensor
+├── rohm-bh1750/                  # Ambient light sensor
 ├── espressif-esp32-wroom-32e/    # ESP32 MCU (recommended)
 ├── espressif-esp32-wrover-e/     # ESP32 MCU with PSRAM
 ├── microchip-lan8720a/           # Ethernet PHY
@@ -24,6 +27,46 @@ docs/hardware/components/
 ```
 
 ## Component Inventory
+
+### Sensors
+
+**DFRobot C4001 (SEN0609)** - 24GHz mmWave Radar Sensor
+- **Status:** Documented
+- **Documentation:** [dfrobot-c4001/README.md](./dfrobot-c4001/README.md)
+- **Datasheets:** [dfrobot-c4001/datasheets/README.md](./dfrobot-c4001/datasheets/README.md)
+- **GPIO:** GPIO16 (RX), GPIO9 (TX) - Software UART, 115200 baud
+- **Key Features:**
+  - Presence detection: up to 16m, Motion: up to 25m
+  - 100° × 40° beam angle, Distance & velocity measurement
+  - UART interface (configurable 4800-115200 baud)
+  - 3.3V/5V operation, ESPHome compatible
+- **HaloSense Use:** Accurate presence detection (even stationary people)
+
+**Panasonic EKMC1604111** - PIR Motion Sensor (Wall Type)
+- **Status:** Documented
+- **Documentation:** [panasonic-ekmc1604111/README.md](./panasonic-ekmc1604111/README.md)
+- **Datasheets:** [panasonic-ekmc1604111/datasheets/README.md](./panasonic-ekmc1604111/datasheets/README.md)
+- **GPIO:** GPI35 (input-only) with 33kΩ pull-down resistor
+- **Key Features:**
+  - Three-step lens: 12m/6m/3m detection zones
+  - Coverage: 105° × 40° (asymmetric vertical), 68 beams
+  - Response time: <0.1s (instant motion trigger)
+  - Ultra-low power: 170μA standby (0.56mW @ 3.3V)
+  - Digital output, through-hole mounting
+- **HaloSense Use:** Fast motion detection for instant room entry trigger
+
+**ROHM BH1750FVI** - Digital Ambient Light Sensor
+- **Status:** Documented
+- **Documentation:** [rohm-bh1750/README.md](./rohm-bh1750/README.md)
+- **Datasheets:** [rohm-bh1750/datasheets/README.md](./rohm-bh1750/datasheets/README.md)
+- **GPIO:** GPIO32 (SDA), GPIO33 (SCL) - Hardware I2C
+- **Key Features:**
+  - Range: 1-65,535 lx (extendable to 0.11-100,000 lx)
+  - Resolution: 0.5-4 lx (configurable modes)
+  - I2C interface (address 0x23 or 0x5C)
+  - Power: 120μA active, 0.01μA standby (0.4mW typical)
+  - ESPHome native support, JLCPCB available (C78960)
+- **HaloSense Use:** Ambient light measurement for smart lighting automation
 
 ### ESP32 Microcontroller Module
 **Espressif ESP32-WROOM-32E** - Wi-Fi + Bluetooth MCU Module (Recommended)
